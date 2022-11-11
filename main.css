@@ -62,6 +62,10 @@ a:hover{
     line-height:1.4em;
 }
 
+/* .flex-container::after {
+    padding-bottom:5000px;
+} */
+
 .flex-items:nth-child(1) {
   display: block;
   flex-grow: 0;
@@ -79,7 +83,6 @@ a:hover{
   align-self: auto;
   order: 0;
 }
-
 .sep {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -88,4 +91,9 @@ a:hover{
 .ident {
   width: 120px;
   display: inline-block;
+}
+
+.pgp {
+    margin-bottom:0px;
+    margin-top:0px;
 }
