@@ -1,13 +1,14 @@
 use askama::Template;
 use askama_web::WebTemplate;
 use axum::{Router, http::StatusCode, response::IntoResponse, routing::any, routing::get};
+use color_eyre::Result;
 use tower_http::services::ServeDir;
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<()> {
     tracing_subscriber::registry()
         .with(tracing_subscriber::fmt::layer())
         .init();

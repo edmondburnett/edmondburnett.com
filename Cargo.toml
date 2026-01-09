@@ -7,6 +7,7 @@ edition = "2024"
 askama = "0.15.1"
 askama_web = { version = "0.15.0", features = ["axum-0.8"] }
 axum = "0.8.8"
+color-eyre = "0.6.5"
 tokio = { version = "1.49.0", features = ["rt-multi-thread", "macros"] }
 tower-http = { version = "0.6.8", features = ["trace", "fs"] }
 tracing = "0.1.44"
