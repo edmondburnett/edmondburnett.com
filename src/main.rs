@@ -23,7 +23,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[derive(Template, WebTemplate)]
-#[template(path = "root.html")]
+#[template(path = "root.html.j2")]
 #[allow(dead_code)]
 struct RootTemplate<'a> {
     name: &'a str,
