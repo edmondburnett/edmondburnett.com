@@ -1,6 +1,7 @@
 use askama::Template;
 use askama_web::WebTemplate;
-use axum::{Router, http::StatusCode, response::IntoResponse, routing::get};
+use axum::{Router, http::StatusCode, response::IntoResponse, routing::any, routing::get};
+use tower_http::services::ServeDir;
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
@@ -13,6 +14,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let app = Router::new()
         .route("/", get(root))
+        .nest_service("/static", ServeDir::new("static").fallback(any(handler_404)))
         .fallback(handler_404)
         .layer(TraceLayer::new_for_http());
 
