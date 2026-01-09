@@ -33,10 +33,28 @@ body {
     display: inline-block;
 }
 
-.dark #theme-toggle .dark-icon {
-    filter: invert(1);
-}
-
 #theme-toggle:hover {
     opacity: 0.9;
+}
+
+/* Hide/show icons based on theme */
+#theme-toggle .light-icon {
+    display: inline-block;
+}
+
+#theme-toggle .dark-icon {
+    display: none;
+}
+
+.dark #theme-toggle .light-icon {
+    display: none;
+}
+
+.dark #theme-toggle .dark-icon {
+    display: inline-block;
+}
+
+/* Make the light icon white in dark mode */
+.dark #theme-toggle .dark-icon {
+    filter: invert(1);
 }
