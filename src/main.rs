@@ -17,6 +17,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .layer(TraceLayer::new_for_http());
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
+    tracing::debug!("Listening on {}", listener.local_addr()?);
     axum::serve(listener, app).await?;
 
     Ok(())
@@ -33,6 +34,10 @@ async fn root() -> RootTemplate<'static> {
     RootTemplate { name: "edmond" }
 }
 
+#[derive(Template, WebTemplate)]
+#[template(path = "404.html.j2")]
+struct NotFoundTemplate;
+
 async fn handler_404() -> impl IntoResponse {
-    (StatusCode::NOT_FOUND, "404 Not Found")
+    (StatusCode::NOT_FOUND, NotFoundTemplate)
 }
