@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/main.css">
+
+    <script>
+        if (localStorage.theme === 'dark' || (!localStorage.theme && 
+            matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+        }
+    </script>
 </head>
 
 <body>
+    <button onclick="toggleTheme()">🌓</button>
+    <script src="/static/theme.js"></script>
 
-{% block content %}{% endblock %}
+    <br /><br />
 
+    {% block content %}{% endblock %}
 </body>
 </html>

@@ -9,7 +9,7 @@ pub fn app_routes() -> Router {
         .route("/", get(handlers::root))
         // Root-level static files
         .route_service("/favicon.ico", ServeFile::new("static/favicon.ico"))
-        .route_service("/main.css", ServeFile::new("static/main.css"))
+        .route_service("/main_old.css", ServeFile::new("static/main_old.css"))
         // .route_service("/favicon-16x16.png", ServeFile::new("static/favicon-16x16.png"))
         // .route_service("/favicon-32x32.png", ServeFile::new("static/favicon-32x32.png"))
         // .route_service("/favicon-48x48.png", ServeFile::new("static/favicon-48x48.png"))
