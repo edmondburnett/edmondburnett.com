@@ -1,11 +1,49 @@
 use comrak::{Options, markdown_to_html};
+use gray_matter::engine::YAML;
+use gray_matter::{Matter, ParsedEntity};
+use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
+
+#[derive(Serialize, Deserialize)]
+struct FrontMatter {
+    title: String,
+    tags: Vec<String>,
+    description: String,
+}
 
 pub fn convert_markdown() {
     let post_data = load_file("test-post");
-    let mut options = Options::default();
-    options.extension.front_matter_delimiter = Some("---".to_string());
-    let html = markdown_to_html(&post_data, &options);
+
+    let matter = Matter::<YAML>::new();
+    let parsed: ParsedEntity = match matter.parse(&post_data) {
+        Ok(data) => data,
+        Err(e) => {
+            eprintln!("Failed to parse {}", e);
+            return;
+        }
+    };
+
+    let options = Options::default();
+
+    let metadata: FrontMatter = match parsed.data {
+        Some(pod) => match pod.deserialize::<FrontMatter>() {
+            Ok(data) => data,
+            Err(e) => {
+                eprintln!("Failed to deserialize front matter: {}", e);
+                return;
+            }
+        },
+        None => {
+            eprintln!("No front matter found in file.");
+            return;
+        }
+    };
+    println!(
+        "Metadata: {}, {}, {:?}",
+        metadata.title, metadata.description, metadata.tags
+    );
+
+    let html = markdown_to_html(&parsed.content, &options);
     println!("{}", html);
 }
 

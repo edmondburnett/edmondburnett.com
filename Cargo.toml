@@ -9,6 +9,9 @@ askama_web = { version = "0.15.0", features = ["axum-0.8"] }
 axum = "0.8.8"
 color-eyre = "0.6.5"
 comrak = "0.49.0"
+gray_matter = "0.3.2"
+serde = "1.0.228"
+serde_yaml = "0.9.34"
 tokio = { version = "1.49.0", features = ["rt-multi-thread", "macros"] }
 tower-http = { version = "0.6.8", features = ["trace", "fs"] }
 tracing = "0.1.44"
