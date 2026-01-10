@@ -1,3 +1,4 @@
 # edmondburnett.com
 
-For now, just a personal landing page leading to some other artifacts.
+A site for posts or essays on code/tech/linux/ops and other artifacts.
+
