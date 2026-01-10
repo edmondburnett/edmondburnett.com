@@ -15,7 +15,7 @@ async fn main() -> Result<()> {
 
     let app = routes::app_routes().layer(TraceLayer::new_for_http());
 
-    post::load_file();
+    post::convert_markdown();
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
     tracing::debug!("Listening on {}", listener.local_addr()?);
