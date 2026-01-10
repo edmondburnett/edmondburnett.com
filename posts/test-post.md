@@ -10,3 +10,9 @@ tags:
 # This is a top heading
 
 This is some random normal text and [link](https://edmondburnett.com) content.
+
+```python
+from collections import abc
+
+print("This is some python code")
+```
