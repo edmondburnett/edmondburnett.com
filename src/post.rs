@@ -6,9 +6,10 @@ use std::path::PathBuf;
 
 #[derive(Serialize, Deserialize)]
 struct FrontMatter {
+    id: Option<String>, // TODO: actually comes from filename?
     title: String,
+    description: Option<String>,
     tags: Vec<String>,
-    description: String,
 }
 
 pub fn convert_markdown() {
@@ -39,7 +40,7 @@ pub fn convert_markdown() {
         }
     };
     println!(
-        "Metadata: {}, {}, {:?}",
+        "Metadata: {:?}, {:?}, {:?}",
         metadata.title, metadata.description, metadata.tags
     );
 
