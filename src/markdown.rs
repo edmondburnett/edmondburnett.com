@@ -24,6 +24,7 @@ pub struct TutorialMetadata {
     pub duration: u32,
 }
 
+#[derive(Debug)]
 #[allow(dead_code)]
 pub struct Markdown<T> {
     metadata: T,
@@ -31,6 +32,7 @@ pub struct Markdown<T> {
     raw_content: String,
 }
 
+#[allow(dead_code)]
 impl<T: DeserializeOwned> Markdown<T> {
     pub fn from_file(dir: &str, id: &str) -> Result<Self> {
         let id = id;
@@ -84,5 +86,9 @@ impl<T: DeserializeOwned> Markdown<T> {
 
     pub fn html(&self) -> &str {
         &self.html
+    }
+
+    pub fn raw_content(&self) -> &str {
+        &self.raw_content
     }
 }
