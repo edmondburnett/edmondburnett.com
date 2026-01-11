@@ -1,6 +1,9 @@
 {% extends "layout.html.j2" %}
 {% block content %}
 
-post: {{id}}
+post: {{title}}
+desc: {{description}}
+<br />
+{{html|safe}}
 
 {% endblock %}

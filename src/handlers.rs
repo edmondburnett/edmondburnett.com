@@ -27,10 +27,13 @@ pub async fn handler_404() -> impl IntoResponse {
 #[allow(dead_code)]
 struct PostTemplate {
     id: String,
+    title: String,
+    description: String,
+    tags: Vec<String>,
+    html: String,
 }
 
 pub async fn post(Path(id): Path<String>) -> impl IntoResponse {
-    println!("Got id {}", id);
     let post = match Post::new(&id) {
         Ok(p) => p,
         Err(e) => {
@@ -40,5 +43,12 @@ pub async fn post(Path(id): Path<String>) -> impl IntoResponse {
     };
     println!("Got post {:?}", post);
 
-    PostTemplate { id }.into_response()
+    PostTemplate {
+        id: post.id,
+        title: post.title,
+        description: post.description,
+        tags: post.tags,
+        html: post.html,
+    }
+    .into_response()
 }

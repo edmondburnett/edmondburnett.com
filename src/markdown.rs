@@ -2,46 +2,71 @@ use color_eyre::{Result, eyre};
 use comrak::{Options, markdown_to_html};
 use gray_matter::engine::YAML;
 use gray_matter::{Matter, ParsedEntity};
+use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct FrontMatter {
-    id: Option<String>, // TODO: actually comes from filename?
-    title: String,
-    description: Option<String>,
-    tags: Vec<String>,
+pub struct PostMetadata {
+    pub id: Option<String>,
+    pub title: String,
+    pub description: String,
+    pub tags: Vec<String>,
 }
 
-pub fn parse_file(file: &String) -> Result<ParsedEntity> {
-    let matter = Matter::<YAML>::new();
-    matter.parse(file).map_err(Into::into)
+pub struct Markdown<T> {
+    metadata: T,
+    html: String,
+    raw_content: String,
 }
 
-pub fn get_metadata(parsed: &ParsedEntity) -> Result<FrontMatter> {
-    let metadata: FrontMatter = match &parsed.data {
-        Some(pod) => match pod.deserialize::<FrontMatter>() {
-            Ok(data) => data,
-            Err(e) => return Err(e.into()),
-        },
-        None => {
-            eprintln!("No front matter found in file.");
-            return Err(eyre::eyre!("No front matter found in file."));
-        }
-    };
-    Ok(metadata)
-}
+impl<T: DeserializeOwned> Markdown<T> {
+    pub fn from_file(dir: &str, id: &str) -> Result<Self> {
+        let file = Self::read_file(dir, id)?;
+        let parsed = Self::parse_file(&file)?;
+        let metadata = Self::extract_metadata(&parsed)?;
+        let html = Self::convert_to_html(&parsed);
 
-pub fn get_html(parsed: &ParsedEntity) -> String {
-    markdown_to_html(&parsed.content, &Options::default())
-}
+        Ok(Self {
+            metadata,
+            html,
+            raw_content: parsed.content,
+        })
+    }
 
-pub fn read_file(dir: &str, id: &str) -> Result<String> {
-    let posts_path = get_path(dir);
-    let file = std::fs::read_to_string(posts_path.join(format!("{}.md", id)))?;
-    Ok(file)
-}
+    fn read_file(dir: &str, id: &str) -> Result<String> {
+        let posts_path = Self::get_path(dir);
+        let file = std::fs::read_to_string(posts_path.join(format!("{}.md", id)))?;
+        Ok(file)
+    }
 
-fn get_path(dir: &str) -> PathBuf {
-    PathBuf::from(dir)
+    fn parse_file(file: &String) -> Result<ParsedEntity> {
+        let matter = Matter::<YAML>::new();
+        matter.parse(file).map_err(Into::into)
+    }
+
+    fn extract_metadata(parsed: &ParsedEntity) -> Result<T> {
+        parsed
+            .data
+            .as_ref()
+            .ok_or_else(|| eyre::eyre!("No front matter/metadata found in file."))?
+            .deserialize()
+            .map_err(Into::into)
+    }
+
+    fn convert_to_html(parsed: &ParsedEntity) -> String {
+        markdown_to_html(&parsed.content, &Options::default())
+    }
+
+    fn get_path(dir: &str) -> PathBuf {
+        PathBuf::from(dir)
+    }
+
+    pub fn metadata(&self) -> &T {
+        &self.metadata
+    }
+
+    pub fn html(&self) -> &str {
+        &self.html
+    }
 }
