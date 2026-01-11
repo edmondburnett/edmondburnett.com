@@ -1,3 +1,4 @@
+use color_eyre::eyre::Context;
 use color_eyre::{Result, eyre};
 use comrak::{Options, markdown_to_html};
 use gray_matter::engine::YAML;
@@ -5,6 +6,7 @@ use gray_matter::{Matter, ParsedEntity};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
+use tracing::warn;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PostMetadata {
@@ -32,10 +34,15 @@ pub struct Markdown<T> {
 
 impl<T: DeserializeOwned> Markdown<T> {
     pub fn from_file(dir: &str, id: &str) -> Result<Self> {
-        let file = Self::read_file(dir, id)?;
-        let parsed = Self::parse_file(&file)?;
-        let metadata = Self::extract_metadata(&parsed)?;
+        let id = id;
+        let file = Self::read_file(dir, id).wrap_err(format!("Failed to read {}.md", id))?;
+        let parsed = Self::parse_file(&file).wrap_err(format!("Failed to markdown"))?;
+        let metadata = Self::extract_metadata(&parsed).wrap_err(format!("Can't extract metadata from {}.md", id))?;
         let html = Self::convert_to_html(&parsed);
+
+        if html.trim().is_empty() {
+            warn!(file = %format!("{}.md", id), "No HTML content found in file");
+        }
 
         Ok(Self {
             metadata,
@@ -59,7 +66,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         parsed
             .data
             .as_ref()
-            .ok_or_else(|| eyre::eyre!("No front matter/metadata found in file."))?
+            .ok_or_else(|| eyre::eyre!("No front matter/metadata found."))?
             .deserialize()
             .map_err(Into::into)
     }
