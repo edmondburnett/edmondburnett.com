@@ -8,6 +8,7 @@ mod handlers;
 mod markdown;
 mod post;
 mod routes;
+mod validation;
 
 // usage:
 // cargo run
@@ -41,7 +42,7 @@ async fn main() -> Result<()> {
 
     match cli.command {
         Some(Commands::Validate) => {
-            validate_posts()?;
+            validation::validate_posts()?;
         }
         Some(Commands::Serve { port }) => {
             start_server(port).await?;
@@ -61,42 +62,6 @@ async fn start_server(port: u16) -> Result<()> {
     let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port)).await?;
     tracing::info!("Listening on {}", listener.local_addr()?);
     axum::serve(listener, app).await?;
-
-    Ok(())
-}
-
-fn validate_posts() -> Result<()> {
-    use post::Post;
-    tracing::info!("Validating posts...");
-
-    let mut valid = 0;
-    let mut invalid = 0;
-
-    for entry in std::fs::read_dir("posts")? {
-        let path = entry?.path();
-
-        if path.extension().and_then(|s| s.to_str()) != Some("md") {
-            continue;
-        }
-
-        if let Some(id) = path.file_stem().and_then(|s| s.to_str()) {
-            match Post::new(id) {
-                Ok(_) => {
-                    tracing::info!(post_id = %id, "✓ Post valid");
-                    valid += 1;
-                }
-                Err(e) => {
-                    tracing::error!(post_id = %id, error = %e, "✗ Post validation failed");
-                    invalid += 1;
-                }
-            }
-        } else {
-            tracing::warn!(path = ?path, "✗ Invalid filename");
-            invalid += 1;
-        }
-    }
-
-    tracing::info!(valid, invalid, "Validation complete");
 
     Ok(())
 }
