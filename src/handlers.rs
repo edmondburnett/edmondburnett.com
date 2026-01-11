@@ -37,11 +37,10 @@ pub async fn post(Path(id): Path<String>) -> impl IntoResponse {
     let post = match Post::new(&id) {
         Ok(p) => p,
         Err(e) => {
-            eprintln!("Error loading post: {:?}", e);
-            return StatusCode::NOT_FOUND.into_response();
+            tracing::error!(post_id = %id, error = %e, "Failed to load post");
+            return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
         }
     };
-    println!("Got post {:?}", post);
 
     PostTemplate {
         id: post.id,

@@ -6,7 +6,6 @@ use gray_matter::{Matter, ParsedEntity};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
-use tracing::warn;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PostMetadata {
@@ -41,7 +40,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         let html = Self::convert_to_html(&parsed);
 
         if html.trim().is_empty() {
-            warn!(file = %format!("{}.md", id), "No HTML content found in file");
+            tracing::warn!(file = %format!("{}.md", id), "No HTML content found in file");
         }
 
         Ok(Self {
