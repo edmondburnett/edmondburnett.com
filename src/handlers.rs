@@ -1,3 +1,4 @@
+use crate::post::Post;
 use askama::Template;
 use askama_web::WebTemplate;
 use axum::{extract::Path, http::StatusCode, response::IntoResponse};
@@ -29,6 +30,15 @@ struct PostTemplate {
 }
 
 pub async fn post(Path(id): Path<String>) -> impl IntoResponse {
-    println!("{}", id);
-    PostTemplate { id }
+    println!("Got id {}", id);
+    let post = match Post::new(&id) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("Error loading post: {:?}", e);
+            return StatusCode::NOT_FOUND.into_response();
+        }
+    };
+    println!("Got post {:?}", post);
+
+    PostTemplate { id }.into_response()
 }
