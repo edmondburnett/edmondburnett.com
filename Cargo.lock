@@ -485,6 +485,7 @@ dependencies = [
  "askama",
  "askama_web",
  "axum",
+ "clap",
  "color-eyre",
  "comrak",
  "gray_matter",
