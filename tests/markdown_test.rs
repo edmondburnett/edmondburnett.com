@@ -28,13 +28,13 @@ mod tests {
         let dir = "test_posts";
         let id = "test_valid";
         let content = r#"---
-            title: Test Post
-            tags: [rust, testing]
-            ---
+title: Test Post
+tags: [rust, testing]
+---
 
-            # Hello World
+# Hello World
 
-            This is a test post."#;
+This is a test post."#;
 
         create_test_file(dir, id, content);
 
@@ -79,9 +79,9 @@ mod tests {
         let dir = "test_posts";
         let id = "test_empty";
         let content = r#"---
-            title: Empty Post
-            tags: []
-            ---"#;
+title: Empty Post
+tags: []
+---"#;
 
         create_test_file(dir, id, content);
 
@@ -100,11 +100,11 @@ mod tests {
         let dir = "test_posts";
         let id = "test_invalid";
         let content = r#"---
-            title: Test
-            wrongfield: value
-            ---
+title: Test
+wrongfield: value
+---
 
-            Content here."#;
+Content here."#;
 
         create_test_file(dir, id, content);
 
@@ -127,16 +127,16 @@ mod tests {
         let dir = "test_posts";
         let id = "test_html";
         let content = r#"---
-            title: HTML Test
-            tags: [markdown]
-            ---
+title: HTML Test
+tags: [markdown]
+---
 
-            # Heading
+# Heading
 
-            **Bold** and *italic*
+**Bold** and *italic*
 
-            - List item 1
-            - List item 2"#;
+- List item 1
+- List item 2"#;
 
         create_test_file(dir, id, content);
 
@@ -156,11 +156,11 @@ mod tests {
         let dir = "test_posts";
         let id = "test_raw";
         let content = r#"---
-            title: Raw Test
-            tags: []
-            ---
+title: Raw Test
+tags: []
+---
 
-            Raw content here."#;
+Raw content here."#;
 
         create_test_file(dir, id, content);
 
