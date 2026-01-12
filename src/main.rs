@@ -1,5 +1,6 @@
 use clap::{Parser, Subcommand};
 use color_eyre::Result;
+use std::sync::Arc;
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
@@ -7,6 +8,7 @@ use tracing_subscriber::util::SubscriberInitExt;
 mod handlers;
 mod markdown;
 mod post;
+use post::Post;
 mod routes;
 mod validation;
 
@@ -29,6 +31,11 @@ enum Commands {
         port: u16,
     },
     Validate,
+}
+
+#[derive(Clone)]
+pub struct AppState {
+    posts: Arc<Vec<Post>>,
 }
 
 #[tokio::main]
@@ -57,7 +64,12 @@ async fn main() -> Result<()> {
 }
 
 async fn start_server(port: u16) -> Result<()> {
-    let app = routes::app_routes().layer(TraceLayer::new_for_http());
+    let posts = Post::list()?;
+    tracing::info!("Loaded {} posts.", posts.len());
+
+    let state = AppState { posts: Arc::new(posts) };
+
+    let app = routes::app_routes().with_state(state).layer(TraceLayer::new_for_http());
 
     let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{}", port)).await?;
     tracing::info!("Listening on {}", listener.local_addr()?);

@@ -1,17 +1,30 @@
+use crate::AppState;
 use crate::post::Post;
 use askama::Template;
 use askama_web::WebTemplate;
-use axum::{extract::Path, http::StatusCode, response::IntoResponse};
+use axum::{extract::Path, extract::State, http::StatusCode, response::Html, response::IntoResponse};
 
 #[derive(Template, WebTemplate)]
 #[template(path = "root.html.j2")]
 #[allow(dead_code)]
 pub struct RootTemplate<'a> {
     name: &'a str,
+    posts: &'a Vec<Post>,
 }
 
-pub async fn root() -> RootTemplate<'static> {
-    RootTemplate { name: "edmond" }
+pub async fn root(State(state): State<AppState>) -> impl IntoResponse {
+    let template = RootTemplate {
+        name: "edmond",
+        posts: &state.posts,
+    };
+
+    match template.render() {
+        Ok(html) => Html(html),
+        Err(e) => {
+            tracing::error!("Template render error: {}", e);
+            Html("Error rendering page".to_string())
+        }
+    }
 }
 
 #[derive(Template, WebTemplate)]
@@ -33,7 +46,7 @@ struct PostTemplate {
     html: String,
 }
 
-pub async fn post(Path(id): Path<String>) -> impl IntoResponse {
+pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> impl IntoResponse {
     let post = match Post::new(&id) {
         Ok(p) => p,
         Err(e) => {

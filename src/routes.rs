@@ -1,9 +1,10 @@
 use axum::{Router, routing::any, routing::get};
 use tower_http::services::{ServeDir, ServeFile};
 
+use crate::AppState;
 use crate::handlers;
 
-pub fn app_routes() -> Router {
+pub fn app_routes() -> Router<AppState> {
     Router::new()
         // Routes
         .route("/", get(handlers::root))

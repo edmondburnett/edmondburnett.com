@@ -3,4 +3,10 @@
 
 Hello {{ name }}!
 
+{% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.description }}</p>
+    <p>{{ post.date }}</p>
+{% endfor %}
+
 {% endblock %}

@@ -13,6 +13,7 @@ pub struct PostMetadata {
     pub title: String,
     pub description: String,
     pub tags: Vec<String>,
+    pub date: String,
 }
 
 #[derive(Deserialize)]
@@ -34,21 +35,27 @@ pub struct Markdown<T> {
 
 #[allow(dead_code)]
 impl<T: DeserializeOwned> Markdown<T> {
-    pub fn from_file(dir: &str, id: &str) -> Result<Self> {
+    pub fn from_file(dir: &str, id: &str, full: bool) -> Result<Self> {
         let id = id;
         let file = Self::read_file(dir, id).wrap_err(format!("Failed to read {}.md", id))?;
         let parsed = Self::parse_file(&file).wrap_err(format!("Failed to markdown"))?;
         let metadata = Self::extract_metadata(&parsed).wrap_err(format!("Can't extract metadata from {}.md", id))?;
-        let html = Self::convert_to_html(&parsed);
+        let mut raw_content = String::new();
+        let mut html = String::new();
 
-        if html.trim().is_empty() {
-            tracing::warn!(file = %format!("{}.md", id), "No HTML content found in file");
+        if full {
+            html = Self::convert_to_html(&parsed);
+            raw_content = parsed.content;
+
+            if html.trim().is_empty() {
+                tracing::warn!(file = %format!("{}.md", id), "No HTML content found in file");
+            }
         }
 
         Ok(Self {
             metadata,
             html,
-            raw_content: parsed.content,
+            raw_content,
         })
     }
 

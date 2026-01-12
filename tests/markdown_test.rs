@@ -38,7 +38,7 @@ This is a test post."#;
 
         create_test_file(dir, id, content);
 
-        let result = Markdown::<TestMetadata>::from_file(dir, id);
+        let result = Markdown::<TestMetadata>::from_file(dir, id, true);
         assert!(result.is_ok());
 
         let markdown = result.unwrap();
@@ -58,7 +58,7 @@ This is a test post."#;
 
         create_test_file(dir, id, content);
 
-        let result = Markdown::<TestMetadata>::from_file(dir, id);
+        let result = Markdown::<TestMetadata>::from_file(dir, id, true);
 
         match result {
             Ok(_) => panic!("Expected error but got Ok"),
@@ -85,7 +85,7 @@ tags: []
 
         create_test_file(dir, id, content);
 
-        let result = Markdown::<TestMetadata>::from_file(dir, id);
+        let result = Markdown::<TestMetadata>::from_file(dir, id, true);
         assert!(result.is_ok());
 
         let markdown = result.unwrap();
@@ -108,7 +108,7 @@ Content here."#;
 
         create_test_file(dir, id, content);
 
-        let result = Markdown::<TestMetadata>::from_file(dir, id);
+        let result = Markdown::<TestMetadata>::from_file(dir, id, true);
         // Should fail because 'tags' is required but missing
         assert!(result.is_err());
 
@@ -117,7 +117,7 @@ Content here."#;
 
     #[test]
     fn test_file_not_found() {
-        let result = Markdown::<TestMetadata>::from_file("nonexistent", "missing");
+        let result = Markdown::<TestMetadata>::from_file("nonexistent", "missing", true);
         assert!(result.is_err());
         assert!(result.unwrap_err().to_string().contains("Failed to read"));
     }
@@ -140,7 +140,7 @@ tags: [markdown]
 
         create_test_file(dir, id, content);
 
-        let markdown = Markdown::<TestMetadata>::from_file(dir, id).unwrap();
+        let markdown = Markdown::<TestMetadata>::from_file(dir, id, true).unwrap();
         let html = markdown.html();
 
         assert!(html.contains("<h1>Heading</h1>"));
@@ -164,7 +164,7 @@ Raw content here."#;
 
         create_test_file(dir, id, content);
 
-        let markdown = Markdown::<TestMetadata>::from_file(dir, id).unwrap();
+        let markdown = Markdown::<TestMetadata>::from_file(dir, id, true).unwrap();
         assert_eq!(markdown.raw_content(), "Raw content here.");
 
         cleanup_test_dir(dir);

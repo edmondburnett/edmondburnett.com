@@ -1,7 +1,7 @@
 use crate::markdown::{Markdown, PostMetadata};
 use color_eyre::Result;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 #[allow(dead_code)]
 pub struct Post {
     pub id: String,
@@ -9,11 +9,12 @@ pub struct Post {
     pub description: String,
     pub tags: Vec<String>,
     pub html: String,
+    pub date: String,
 }
 
 impl Post {
     pub fn new(id: &str) -> Result<Self> {
-        let markdown = Markdown::<PostMetadata>::from_file("posts", id)?;
+        let markdown = Markdown::<PostMetadata>::from_file("posts", id, true)?;
 
         Ok(Self {
             id: id.to_string(),
@@ -21,6 +22,34 @@ impl Post {
             description: markdown.metadata().description.clone(),
             tags: markdown.metadata().tags.clone(),
             html: markdown.html().to_string(),
+            date: markdown.metadata().date.clone(),
         })
+    }
+
+    pub fn list() -> Result<Vec<Post>> {
+        let mut posts = Vec::new();
+
+        for entry in std::fs::read_dir("posts")? {
+            let path = entry?.path();
+
+            if path.extension().and_then(|s| s.to_str()) != Some("md") {
+                continue;
+            }
+
+            if let Some(id) = path.file_stem().and_then(|s| s.to_str()) {
+                let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
+
+                posts.push(Post {
+                    id: id.to_string(),
+                    title: markdown.metadata().title.clone(),
+                    description: markdown.metadata().description.clone(),
+                    tags: markdown.metadata().tags.clone(),
+                    html: String::new(),
+                    date: markdown.metadata().date.clone(),
+                });
+            }
+        }
+        posts.sort_by(|a, b| b.date.cmp(&a.date));
+        Ok(posts)
     }
 }
