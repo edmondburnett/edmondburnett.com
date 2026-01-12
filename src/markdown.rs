@@ -15,6 +15,7 @@ pub struct PostMetadata {
     pub description: String,
     pub tags: Vec<String>,
     pub date: DateTime<Utc>,
+    pub updated: Option<DateTime<Utc>>,
 }
 
 #[derive(Deserialize)]

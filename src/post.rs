@@ -12,6 +12,7 @@ pub struct Post {
     pub tags: Vec<String>,
     pub html: String,
     pub date: DateTime<Utc>,
+    pub updated: Option<DateTime<Utc>>,
 }
 
 impl Post {
@@ -25,6 +26,7 @@ impl Post {
             tags: markdown.metadata().tags.clone(),
             html: markdown.html().to_string(),
             date: markdown.metadata().date,
+            updated: markdown.metadata().updated,
         })
     }
 
@@ -50,6 +52,7 @@ impl Post {
                         tags: markdown.metadata().tags.clone(),
                         html: String::new(),
                         date: markdown.metadata().date,
+                        updated: markdown.metadata().updated,
                     });
                 }
             }
