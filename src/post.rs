@@ -38,21 +38,28 @@ impl Post {
                 continue;
             }
 
-            if let Some(id) = path.file_stem().and_then(|s| s.to_str()) {
-                let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
+            // if let Some(id) = path.file_stem().and_then(|s| s.to_str()) {
+            if let Some(file_stem) = path.file_stem() {
+                if let Some(id) = file_stem.to_str() {
+                    let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
 
-                posts.push(Post {
-                    id: id.to_string(),
-                    title: markdown.metadata().title.clone(),
-                    description: markdown.metadata().description.clone(),
-                    tags: markdown.metadata().tags.clone(),
-                    html: String::new(),
-                    date: markdown.metadata().date,
-                });
+                    posts.push(Post {
+                        id: id.to_string(),
+                        title: markdown.metadata().title.clone(),
+                        description: markdown.metadata().description.clone(),
+                        tags: markdown.metadata().tags.clone(),
+                        html: String::new(),
+                        date: markdown.metadata().date,
+                    });
+                }
             }
         }
-        posts.sort_by(|a, b| b.date.cmp(&a.date));
+        posts.sort_by(Self::compare_posts_by_date);
         Ok(posts)
+    }
+
+    fn compare_posts_by_date(a: &Post, b: &Post) -> std::cmp::Ordering {
+        b.date.cmp(&a.date)
     }
 
     #[allow(dead_code)]
