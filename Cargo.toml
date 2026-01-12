@@ -7,6 +7,8 @@ edition = "2024"
 askama = "0.15.1"
 askama_web = { version = "0.15.0", features = ["axum-0.8"] }
 axum = "0.8.8"
+chrono = { version = "0.4.42", features = ["serde"]}
+chrono-tz = "0.10.4"
 clap = "4.5.54"
 color-eyre = "0.6.5"
 comrak = "0.49.0"

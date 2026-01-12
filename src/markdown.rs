@@ -1,3 +1,4 @@
+use chrono::{DateTime, Utc};
 use color_eyre::eyre::Context;
 use color_eyre::{Result, eyre};
 use comrak::{Options, markdown_to_html};
@@ -13,7 +14,7 @@ pub struct PostMetadata {
     pub title: String,
     pub description: String,
     pub tags: Vec<String>,
-    pub date: String,
+    pub date: DateTime<Utc>,
 }
 
 #[derive(Deserialize)]

@@ -1,4 +1,6 @@
 use crate::markdown::{Markdown, PostMetadata};
+use chrono::{DateTime, Utc};
+use chrono_tz::US::Pacific;
 use color_eyre::Result;
 
 #[derive(Debug, Clone)]
@@ -9,7 +11,7 @@ pub struct Post {
     pub description: String,
     pub tags: Vec<String>,
     pub html: String,
-    pub date: String,
+    pub date: DateTime<Utc>,
 }
 
 impl Post {
@@ -22,7 +24,7 @@ impl Post {
             description: markdown.metadata().description.clone(),
             tags: markdown.metadata().tags.clone(),
             html: markdown.html().to_string(),
-            date: markdown.metadata().date.clone(),
+            date: markdown.metadata().date,
         })
     }
 
@@ -45,11 +47,19 @@ impl Post {
                     description: markdown.metadata().description.clone(),
                     tags: markdown.metadata().tags.clone(),
                     html: String::new(),
-                    date: markdown.metadata().date.clone(),
+                    date: markdown.metadata().date,
                 });
             }
         }
         posts.sort_by(|a, b| b.date.cmp(&a.date));
         Ok(posts)
+    }
+
+    #[allow(dead_code)]
+    pub fn formatted_date(&self) -> String {
+        self.date
+            .with_timezone(&Pacific)
+            .format("%a %b %d %Y %I:%M:%S %p %Z")
+            .to_string()
     }
 }

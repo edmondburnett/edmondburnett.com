@@ -2,7 +2,7 @@
 id: test-post
 title: this is a test post
 description: test post for testing yaml front matter and markdown parsing
-date: Sun Jan 11 2026 05:43:55 PM PST
+date: 2026-01-12T02:05:16Z
 tags:
     - linux
     - code
