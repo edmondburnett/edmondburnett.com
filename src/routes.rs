@@ -8,8 +8,8 @@ pub fn app_routes() -> Router<AppState> {
     Router::new()
         // Routes
         .route("/", get(handlers::root))
-        .route("/p/{id}", get(handlers::post))
         .route("/about", get(handlers::about))
+        .route("/p/{id}", get(handlers::post))
         // Root-level static files
         .route_service("/favicon.ico", ServeFile::new("static/favicon.ico"))
         .route_service("/main_old.css", ServeFile::new("static/main_old.css"))
