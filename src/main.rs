@@ -9,6 +9,7 @@ mod handlers;
 mod markdown;
 mod post;
 use post::Post;
+mod page;
 mod routes;
 mod validation;
 

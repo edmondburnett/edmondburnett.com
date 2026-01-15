@@ -5,6 +5,14 @@ use askama_web::WebTemplate;
 use axum::{extract::Path, extract::State, http::StatusCode, response::Html, response::IntoResponse};
 
 #[derive(Template, WebTemplate)]
+#[template(path = "404.html.j2")]
+struct NotFoundTemplate;
+
+pub async fn handler_404() -> impl IntoResponse {
+    (StatusCode::NOT_FOUND, NotFoundTemplate)
+}
+
+#[derive(Template, WebTemplate)]
 #[template(path = "root.html.j2")]
 #[allow(dead_code)]
 pub struct RootTemplate<'a> {
@@ -25,14 +33,6 @@ pub async fn root(State(state): State<AppState>) -> impl IntoResponse {
             Html("Error rendering page".to_string())
         }
     }
-}
-
-#[derive(Template, WebTemplate)]
-#[template(path = "404.html.j2")]
-struct NotFoundTemplate;
-
-pub async fn handler_404() -> impl IntoResponse {
-    (StatusCode::NOT_FOUND, NotFoundTemplate)
 }
 
 #[derive(Template, WebTemplate)]
@@ -63,4 +63,13 @@ pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> imp
         html: post.html,
     }
     .into_response()
+}
+
+#[derive(Template, WebTemplate)]
+#[template(path = "about.html.j2")]
+#[allow(dead_code)]
+struct AboutTemplate {
+    id: String,
+    title: String,
+    html: String,
 }

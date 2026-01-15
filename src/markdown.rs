@@ -18,6 +18,13 @@ pub struct PostMetadata {
     pub updated: Option<DateTime<Utc>>,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct PageMetadata {
+    pub id: Option<String>,
+    pub title: String,
+    pub updated: DateTime<Utc>,
+}
+
 #[derive(Deserialize)]
 #[allow(dead_code)]
 pub struct TutorialMetadata {
@@ -62,8 +69,8 @@ impl<T: DeserializeOwned> Markdown<T> {
     }
 
     fn read_file(dir: &str, id: &str) -> Result<String> {
-        let posts_path = Self::get_path(dir);
-        let file = std::fs::read_to_string(posts_path.join(format!("{}.md", id)))?;
+        let path = Self::get_path(dir);
+        let file = std::fs::read_to_string(path.join(format!("{}.md", id)))?;
         Ok(file)
     }
 
