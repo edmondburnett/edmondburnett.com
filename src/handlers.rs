@@ -1,4 +1,5 @@
 use crate::AppState;
+use crate::page::Page;
 use crate::post::Post;
 use askama::Template;
 use askama_web::WebTemplate;
@@ -72,4 +73,21 @@ struct AboutTemplate {
     id: String,
     title: String,
     html: String,
+}
+
+pub async fn about(State(_state): State<AppState>) -> impl IntoResponse {
+    let page = match Page::new("about") {
+        Ok(p) => p,
+        Err(e) => {
+            tracing::error!(error = %e, "Failed to load about page");
+            return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
+        }
+    };
+
+    AboutTemplate {
+        id: page.id,
+        title: page.title,
+        html: page.html,
+    }
+    .into_response()
 }
