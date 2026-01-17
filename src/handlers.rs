@@ -56,6 +56,11 @@ pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> imp
         }
     };
 
+    if post.draft {
+        tracing::warn!(post_id = %id, "Attempt to access draft post");
+        return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
+    }
+
     PostTemplate {
         id: post.id,
         title: post.title,
