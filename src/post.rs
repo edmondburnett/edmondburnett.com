@@ -13,6 +13,7 @@ pub struct Post {
     pub html: String,
     pub date: DateTime<Utc>,
     pub updated: Option<DateTime<Utc>>,
+    pub draft: bool,
 }
 
 impl Post {
@@ -27,6 +28,7 @@ impl Post {
             html: markdown.html().to_string(),
             date: markdown.metadata().date,
             updated: markdown.metadata().updated,
+            draft: markdown.metadata().draft,
         })
     }
 
@@ -45,6 +47,10 @@ impl Post {
                 if let Some(id) = file_stem.to_str() {
                     let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
 
+                    if markdown.metadata().draft {
+                        continue;
+                    }
+
                     posts.push(Post {
                         id: id.to_string(),
                         title: markdown.metadata().title.clone(),
@@ -53,6 +59,7 @@ impl Post {
                         html: String::new(),
                         date: markdown.metadata().date,
                         updated: markdown.metadata().updated,
+                        draft: markdown.metadata().draft,
                     });
                 }
             }

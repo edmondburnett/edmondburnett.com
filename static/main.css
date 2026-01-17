@@ -24,6 +24,7 @@ body {
     padding: 2rem;
 }
 
+/* Light/Dark mode toggle */
 #theme-toggle {
     background: transparent;
     border: none;
@@ -43,8 +44,8 @@ body {
     opacity: 0.9;
 }
 
-/* Hide/show icons based on theme */
 #theme-toggle .light-icon {
+    /* Hide/show icons based on theme */
     display: inline-block;
 }
 
@@ -60,7 +61,7 @@ body {
     display: inline-block;
 }
 
-/* Make the light icon white in dark mode */
 .dark #theme-toggle .dark-icon {
+    /* Make the light icon white in dark mode */
     filter: invert(1);
 }
