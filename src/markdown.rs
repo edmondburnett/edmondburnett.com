@@ -16,6 +16,7 @@ pub struct PostMetadata {
     pub tags: Vec<String>,
     pub date: DateTime<Utc>,
     pub updated: Option<DateTime<Utc>>,
+    #[serde(default)]
     pub draft: bool,
 }
 
