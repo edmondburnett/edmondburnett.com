@@ -13,11 +13,6 @@ mod page;
 mod routes;
 mod validation;
 
-// usage:
-// cargo run
-// cargo run -- serve --port 8080
-// cargo run -- validate (validates posts only)
-
 #[derive(Parser)]
 #[command(name = "myapp")]
 struct Cli {

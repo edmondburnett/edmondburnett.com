@@ -31,7 +31,6 @@ pub struct PageMetadata {
 #[allow(dead_code)]
 pub struct TutorialMetadata {
     // example of another metadata type
-    // usage: let markdown = Markdown::<TutorialMetadata>::from_file("tutorials", id)?;
     pub difficulty: String,
     pub duration: u32,
 }
