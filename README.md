@@ -6,13 +6,13 @@ A blog for essays on code/tech/linux/ops.
 
 Serve:
 
-`cargo run`
-`cargo run -- serve --port 8080`
+- `cargo run`
+- `cargo run -- serve --port 8080`
 
 Validate posts:
 
-`cargo run -- validate`
+- `cargo run -- validate`
 
 Run unit tests:
 
-`cargo test`
+- `cargo test`
