@@ -67,7 +67,7 @@ async fn start_server(port: u16) -> Result<()> {
 
     let app = routes::app_routes().with_state(state).layer(TraceLayer::new_for_http());
 
-    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{}", port)).await?;
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port)).await?;
     tracing::info!("Listening on {}", listener.local_addr()?);
     axum::serve(listener, app).await?;
 
