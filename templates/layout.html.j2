@@ -12,14 +12,28 @@
 </head>
 
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">
-        <img class="light-icon" src="/static/asleep--filled.svg" alt="Dark mode">
-        <img class="dark-icon" src="/static/light--filled.svg" alt="Light mode">
-    </button>
+<header>
+<nav>
+    <div class="nav-left"><a href="/">edmond burnett</a></div>
+    <div class="nav-right">
+        <a href="/about">about</a>
+        <a href="/projects">projects</a>
+        <a href="/archive">archive</a>
+        <button id="theme-toggle" onclick="toggleTheme()">
+            <img class="light-icon" src="/static/asleep--filled.svg" alt="Dark mode">
+            <img class="dark-icon" src="/static/light--filled.svg" alt="Light mode">
+        </button>
     <script src="/static/theme.js"></script>
+    </div>
+</nav>
+</header>
 
-    <br /><br />
-
+<main>
     {% block content %}{% endblock %}
+</main>
+
+<footer>
+</footer>
+
 </body>
 </html>
