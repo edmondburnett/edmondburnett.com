@@ -29,11 +29,38 @@ html {
 :root {
     --bg: #f5f5f5;
     --text: #1a1a1a;
+    --highlight: #7a7a7a;
 }
 
 .dark {
     --bg: #0f0f0f;
     --text: #e0e0e0;
+    --highlight: #ffffff;
+}
+
+a {
+    color: var(--text);
+    transition: color 0.2s;
+}
+
+a:visited {
+    color: var(--text);
+}
+
+a:hover {
+    color: var(--highlight);
+}
+
+.dark a {
+    color: var(--text);
+}
+
+.dark a:visited {
+    color: var(--text);
+}
+
+.dark a:hover {
+    color: var(--highlight);
 }
 
 body {
@@ -46,6 +73,10 @@ body {
     font-family: serif;
     font-size: 20px;
     padding: 2rem;
+}
+
+header {
+    font-size: 26px;
 }
 
 nav {
@@ -68,7 +99,7 @@ nav {
 
 .nav-right {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
     flex-shrink: 0;
 }
@@ -83,9 +114,11 @@ main {
 #theme-toggle {
     background: transparent;
     border: none;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: opacity 0.3s;
+    margin-top: 4px;
+    opacity: 0.25;
 }
 
 #theme-toggle img {
@@ -96,7 +129,7 @@ main {
 }
 
 #theme-toggle:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #theme-toggle .light-icon {
