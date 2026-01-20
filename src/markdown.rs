@@ -36,7 +36,6 @@ pub struct TutorialMetadata {
 }
 
 #[derive(Debug)]
-#[allow(dead_code)]
 pub struct Markdown<T> {
     metadata: T,
     html: String,
