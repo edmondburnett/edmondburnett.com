@@ -6,7 +6,7 @@
 }
 
 * ::selection {
-    background-color: #72dec2;
+    background-color: rgba(114, 222, 194, 1);
     color: #000;
     text-decoration: none;
 }
@@ -14,7 +14,6 @@
 :root {
     --bg: #f5f5f5;
     --text: #1a1a1a;
-    /* --highlight: #7a7a7a; */
     --highlight: white;
     --bghighlight: black;
     --fbg: #eaeaea;
@@ -29,7 +28,6 @@
 .dark {
     --bg: #0f0f0f;
     --text: #e0e0e0;
-    /* --highlight: #ffffff; */
     --highlight: black;
     --bghighlight: white;
     --fbg: #000000;
@@ -39,24 +37,6 @@
 
 html {
     background: var(--fbg);
-    /* background-image: */
-    /*     repeating-linear-gradient( */
-    /*         45deg, */
-    /*         transparent, */
-    /*         transparent 5px, */
-    /*         rgba(0, 0, 0, 0.8) 6px, */
-    /*         rgba(0, 0, 0, 0.8) 7px */
-    /*     ), */
-    /*     repeating-linear-gradient( */
-    /*         -45deg, */
-    /*         transparent, */
-    /*         transparent 5px, */
-    /*         rgba(0, 0, 0, 0.8) 6px, */
-    /*         rgba(0, 0, 0, 0.8) 7px */
-    /*     ); */
-    /* background-size: 14px 14px; */
-    /* background-repeat: repeat; */
-    /* background-attachment: fixed; */
     transition:
         background var(--bgtrans),
         color var(--colortrans);
@@ -101,7 +81,6 @@ body {
 }
 
 header {
-    /* font-size: 26px; */
     font-size: 2rem;
     padding-top: 80px;
 }
@@ -111,7 +90,6 @@ pre {
     margin-bottom: 30px;
     padding: 0;
     position: relative;
-    /* font-size: 16px; */
 }
 
 .code-label {
@@ -189,7 +167,7 @@ nav {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    /* flex-shrink: 0; */
+    flex-shrink: 0;
 }
 
 #topline {
@@ -235,6 +213,8 @@ footer {
     width: 100%;
     height: 100px;
     margin-top: 60px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 footer ul {
@@ -258,7 +238,6 @@ footer ul li {
     justify-content: space-between;
     align-items: start;
     padding-top: 50px;
-    padding-bottom: 50px;
     /* font-size: 18px; */
 }
 
@@ -266,6 +245,7 @@ footer ul li {
     display: flex;
     gap: 1rem;
     align-items: center;
+    padding-bottom: 40px;
 }
 
 .footer-left svg {
@@ -295,6 +275,7 @@ footer ul li {
     flex-direction: column;
     gap: 1.5rem;
     padding-top: 4px;
+    padding-bottom: 40px;
 }
 
 .post-date {
