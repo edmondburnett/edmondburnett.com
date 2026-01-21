@@ -61,53 +61,20 @@ pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> imp
 }
 
 #[derive(Template, WebTemplate)]
-#[template(path = "about.html.j2")]
-#[allow(dead_code)]
-struct AboutTemplate {
-    id: String,
-    title: String,
-    html: String,
-}
-
-pub async fn about(State(_state): State<AppState>) -> impl IntoResponse {
-    let page = match Page::new("about") {
-        Ok(p) => p,
-        Err(e) => {
-            tracing::error!(error = %e, "Failed to load about page");
-            return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
-        }
-    };
-
-    AboutTemplate {
-        id: page.id,
-        title: page.title,
-        html: page.html,
-    }
-    .into_response()
-}
-
-#[derive(Template, WebTemplate)]
 #[template(path = "page.html.j2")]
 #[allow(dead_code)]
 struct PageTemplate {
-    id: String,
-    title: String,
-    html: String,
+    page: Page,
 }
 
-pub async fn pgp(State(_state): State<AppState>) -> impl IntoResponse {
-    let page = match Page::new("pgp") {
+pub async fn page(State(_state): State<AppState>, Path(page_name): Path<String>) -> impl IntoResponse {
+    let page = match Page::new(&page_name) {
         Ok(p) => p,
         Err(e) => {
-            tracing::error!(error = %e, "Failed to load pgp page");
+            tracing::error!(page_name = %page_name, error = %e, "Failed to load page");
             return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
         }
     };
 
-    PageTemplate {
-        id: page.id,
-        title: page.title,
-        html: page.html,
-    }
-    .into_response()
+    PageTemplate { page }.into_response()
 }

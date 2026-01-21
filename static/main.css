@@ -100,11 +100,6 @@ header {
     padding-top: 80px;
 }
 
-main p {
-    margin-bottom: 1rem;
-    line-height: 160%;
-}
-
 /* pre { */
 /*     margin-top: 30px; */
 /*     margin-bottom: 20px; */
@@ -231,6 +226,19 @@ main {
         color var(--colortrans);
     margin: 0 auto;
     padding: 1.5rem, 1rem;
+}
+
+main a {
+    text-decoration: underline;
+}
+
+main a:hover {
+    text-decoration: none;
+}
+
+main p {
+    margin-bottom: 1rem;
+    line-height: 160%;
 }
 
 footer {

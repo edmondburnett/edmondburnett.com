@@ -28,7 +28,8 @@ impl Page {
     pub fn updated(&self) -> String {
         self.updated
             .with_timezone(&Pacific)
-            .format("%a %b %d %Y %I:%M:%S %p %Z")
+            // .format("%a %b %d %Y %I:%M:%S %p %Z")
+            .format("%B %d, %Y")
             .to_string()
     }
 }

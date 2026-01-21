@@ -1,8 +1,11 @@
 {% extends "layout.html.j2" %}
 {% block content %}
 
-<h1>{{ title }}</h1>
+<h1>{{ page.title }}</h1>
+<span class="post-date">Last update: {{ page.updated() }}</span>
 
-{{ html|safe }}
+<div class="post-content">
+{{ page.html|safe }}
+</div>
 
 {% endblock %}
