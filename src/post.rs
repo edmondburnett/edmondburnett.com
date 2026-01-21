@@ -89,7 +89,7 @@ impl Post {
     fn format_date_value(&self, date: DateTime<Utc>) -> String {
         date.with_timezone(&Pacific)
             // .format("%a %b %d %Y %I:%M:%S %p %Z")
-            .format("%A %B %d, %Y")
+            .format("%B %d, %Y")
             .to_string()
     }
 }

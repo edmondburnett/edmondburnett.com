@@ -102,7 +102,7 @@ header {
 
 main p {
     margin-bottom: 1rem;
-    line-height: 150%;
+    line-height: 160%;
 }
 
 /* pre { */
@@ -152,6 +152,9 @@ pre code {
     display: block;
     padding: 10px;
     background: var(--bgcode);
+    transition:
+        background var(--bgtrans),
+        color var(--colortrans);
 }
 
 .code-copy-btn {
@@ -165,8 +168,8 @@ pre code {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.6;
-    transition: opacity 0.2s;
+    opacity: 0.3;
+    transition: opacity 0.4s;
 }
 
 .code-copy-btn:hover {
@@ -197,8 +200,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    /* padding: 1rem; */
-    /* padding: 0 1rem; */
     margin-bottom: 100px;
 }
 

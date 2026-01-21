@@ -26,11 +26,18 @@ document.querySelectorAll('pre').forEach((pre) => {
     // Get code content
     button.addEventListener('click', async () => {
         const text = code.textContent
+        const img = button.querySelector('img')
 
         try {
             await navigator.clipboard.writeText(text)
+            img.src = '/static/checkmark.svg'
+            img.alt = 'Copied!'
             button.classList.add('copied')
-            setTimeout(() => button.classList.remove('copied'), 2000)
+            setTimeout(() => {
+                img.src = '/static/copy.svg'
+                img.alt = 'Copy code'
+                button.classList.remove('copied')
+            }, 1000)
         } catch (err) {
             console.error('Failed to copy:', err)
         }
