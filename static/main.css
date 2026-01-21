@@ -106,32 +106,6 @@ header {
     padding-top: 80px;
 }
 
-/* pre { */
-/*     margin-top: 30px; */
-/*     margin-bottom: 20px; */
-/*     padding: 0; */
-/*     background: var(--bgcode); */
-/*     transition: */
-/*         background var(--bgtrans), */
-/*         color var(--colortrans); */
-/* } */
-/**/
-/* .code-wrapper { */
-/*     padding: 10px; */
-/*     display: block; */
-/* } */
-/**/
-/* pre code[class*='language-']::before { */
-/*     content: attr(class); */
-/*     display: block; */
-/*     opacity: 1; */
-/*     margin-bottom: 0.3rem; */
-/*     background: #72dec2; */
-/*     transition: */
-/*         background var(--bgtrans), */
-/*         color var(--colortrans); */
-/* } */
-
 pre {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -246,6 +220,11 @@ main a:hover {
 main p {
     margin-bottom: 1rem;
     line-height: 160%;
+}
+
+h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 footer {
