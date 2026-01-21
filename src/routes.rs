@@ -9,6 +9,7 @@ pub fn app_routes() -> Router<AppState> {
         // Routes
         .route("/", get(handlers::root))
         .route("/about", get(handlers::about))
+        .route("/pgp", get(handlers::pgp))
         .route("/p/{id}", get(handlers::post))
         // Root-level static files
         .route_service("/favicon.ico", ServeFile::new("static/favicon.ico"))

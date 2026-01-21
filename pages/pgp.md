@@ -1,17 +1,10 @@
-<!doctype html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" href="/static/main_old.css" />
-        <title>edmondburnett.com - pgp key</title>
-    </head>
+---
+id: pgp
+title: PGP Public Key
+updated: 2026-01-20T21:17:59Z
+---
 
-    <!-- yeah, it's just HTML/CSS -->
-
-    <body>
-        <div class="flex-container">
-            <div class="flex-items">
-                <pre>
+```pgp
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGNuoQ8BEACjL+f99j/ebkSZqy7BrbG/cJotOEQ6jsy0DbQonq8kIxeiqEbW
@@ -63,10 +56,4 @@ omVCrcHBUC0PkO1s68klp9EirXDy8t7V7XEDC2DUVtM+an58ZibYL+Rm4xgRPSi7
 il9ZTuSnYGc8xjgAxTC+eKjzKGPLa+O2Qw5eGafkgE7V/0FN3OMWwO+AW2/Mn5Dl
 =kPVj
 -----END PGP PUBLIC KEY BLOCK-----
-</pre
-                >
-            </div>
-        </div>
-    </body>
-</html>
-
+```

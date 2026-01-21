@@ -85,3 +85,29 @@ pub async fn about(State(_state): State<AppState>) -> impl IntoResponse {
     }
     .into_response()
 }
+
+#[derive(Template, WebTemplate)]
+#[template(path = "page.html.j2")]
+#[allow(dead_code)]
+struct PageTemplate {
+    id: String,
+    title: String,
+    html: String,
+}
+
+pub async fn pgp(State(_state): State<AppState>) -> impl IntoResponse {
+    let page = match Page::new("pgp") {
+        Ok(p) => p,
+        Err(e) => {
+            tracing::error!(error = %e, "Failed to load pgp page");
+            return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
+        }
+    };
+
+    PageTemplate {
+        id: page.id,
+        title: page.title,
+        html: page.html,
+    }
+    .into_response()
+}
