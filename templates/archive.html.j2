@@ -1,0 +1,21 @@
+{% extends "layout.html.j2" %}
+{% block content %}
+
+
+<h1>Latest Posts</h1>
+<div class="posts-list">
+{% for post in posts %}
+{% if loop.index > 3 %}{% break %}{% endif %}
+    <div class="posts-list-item">
+        <time class="posts-list-date">{{ post.short_date() }}</time>
+        <div class="posts-list-content">
+            <span class="posts-list-title"><a href="/p/{{ post.id }}">{{ post.title }}</a><span>
+            <p class="posts-list-description">{{ post.description }}</p>
+        </div>
+    </div>
+{% endfor %}
+</div>
+<br />
+<p>See <a href="/archive">all posts</a>.</p>
+
+{% endblock %}

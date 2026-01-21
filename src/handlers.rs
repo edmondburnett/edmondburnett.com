@@ -17,15 +17,30 @@ pub async fn handler_404() -> impl IntoResponse {
 #[template(path = "root.html.j2")]
 #[allow(dead_code)]
 pub struct RootTemplate<'a> {
-    name: &'a str,
     posts: &'a Vec<Post>,
 }
 
 pub async fn root(State(state): State<AppState>) -> impl IntoResponse {
-    let template = RootTemplate {
-        name: "edmond",
-        posts: &state.posts,
-    };
+    let template = RootTemplate { posts: &state.posts };
+
+    match template.render() {
+        Ok(html) => Html(html),
+        Err(e) => {
+            tracing::error!("Template render error: {}", e);
+            Html("Error rendering page".to_string())
+        }
+    }
+}
+
+#[derive(Template, WebTemplate)]
+#[template(path = "archive.html.j2")]
+#[allow(dead_code)]
+pub struct ArchiveTemplate<'a> {
+    posts: &'a Vec<Post>,
+}
+
+pub async fn archive(State(state): State<AppState>) -> impl IntoResponse {
+    let template = ArchiveTemplate { posts: &state.posts };
 
     match template.render() {
         Ok(html) => Html(html),
