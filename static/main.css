@@ -9,8 +9,8 @@
     --bg: #f5f5f5;
     --text: #1a1a1a;
     /* --highlight: #7a7a7a; */
-    --highlight: black;
-    --bghighlight: white;
+    --highlight: white;
+    --bghighlight: black;
     --fbg: #eaeaea;
     --ftext: #3a3a3a;
     --bgtrans: 0.3s;
@@ -172,7 +172,7 @@ footer ul li {
     display: flex;
     justify-content: space-between;
     align-items: start;
-    padding-top: 20px;
+    padding-top: 50px;
     font-size: 16px;
     /* opacity: 0.5; */
 }
@@ -181,13 +181,12 @@ footer ul li {
     display: flex;
     gap: 1rem;
     align-items: center;
-    /* flex-shrink: 0; */
-    /* line-height: 0.6; */
 }
 
 .footer-left svg {
-    transform: scale(0.75);
-    transform-origin: top center;
+    transform: scale(1);
+    transform-origin: top left;
+    align-items: center;
 }
 
 .footer-left svg polygon {
@@ -201,15 +200,13 @@ footer ul li {
 .footer-mid {
     display: flex;
     gap: 1rem;
-    align-items: center;
-    /* flex-shrink: 0; */
+    padding-top: 4px;
 }
 
 .footer-right {
     display: flex;
     gap: 1.5rem;
-    align-items: center;
-    /* flex-shrink: 0; */
+    padding-top: 4px;
 }
 
 /* Light/Dark mode toggle */
@@ -333,7 +330,7 @@ footer ul li {
     }
 
     .footer-left svg {
-        transform: scale(1);
+        transform: scale(1.2);
         min-width: 0;
         width: 80px;
         height: 80px;
