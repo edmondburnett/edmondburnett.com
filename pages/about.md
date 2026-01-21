@@ -9,7 +9,10 @@ in code, infrastructure, and systems, or making observations on the industry.
 
 My recent programming work is primarily in Python, Rust, and TypeScript. I also use or have used Go (Golang), C, C++,
 Lua, Bash, C#, various Lisps and esolangs, and others. Daily tools include Arch Linux, macOS, Neovim, sometimes Emacs
-(particularly for Lisps).
+(particularly for Lisps), and loads of custom scripting, self-hosted services, automation, and knowledge management.
+
+Personal interests include music production, DIY electronics, photography, travel, weightlifting, hiking, and bicycling.
+I hold a Level 3 Extra Class amateur radio license from the FCC.
 
 ## Hire me
 
