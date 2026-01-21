@@ -5,7 +5,7 @@
 <h1>Latest Posts</h1>
 <div class="posts-list">
 {% for post in posts %}
-{% if loop.index > 5 %}{% break %}{% endif %}
+{% if loop.index > 3 %}{% break %}{% endif %}
     <div class="posts-list-item">
         <time class="posts-list-date">{{ post.short_date() }}</time>
         <div class="posts-list-content">
