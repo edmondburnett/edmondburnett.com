@@ -17,6 +17,7 @@
     --bgcodelabel: #72dec2;
     --bgtrans: 0.3s;
     --colortrans: 0.1s;
+    --gold: #ffb800;
 }
 
 .dark {
@@ -90,17 +91,18 @@ body {
         color var(--colortrans);
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-family: serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 header {
-    font-size: 26px;
+    /* font-size: 26px; */
     font-size: 2rem;
     padding-top: 80px;
 }
 
-p {
+main p {
     margin-bottom: 1rem;
+    line-height: 150%;
 }
 
 /* pre { */
@@ -133,12 +135,13 @@ pre {
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 0;
+    position: relative;
+    /* font-size: 16px; */
 }
 
 .code-label {
-    /* background: var(--bgcode); */
-    padding: 10px;
-    /* margin-bottom: 3px; */
+    padding-left: 10px;
+    margin-bottom: 4px;
     opacity: 0.3;
     transition:
         background var(--bgtrans),
@@ -149,6 +152,38 @@ pre code {
     display: block;
     padding: 10px;
     background: var(--bgcode);
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.code-copy-btn:hover {
+    opacity: 1;
+}
+
+.code-copy-btn.copied {
+    opacity: 1;
+}
+
+.code-copy-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.dark .code-copy-btn img {
+    filter: invert(1);
 }
 
 nav {
@@ -164,7 +199,7 @@ nav {
     gap: 1rem;
     /* padding: 1rem; */
     /* padding: 0 1rem; */
-    margin-bottom: 80px;
+    margin-bottom: 100px;
 }
 
 .nav-left {
@@ -229,8 +264,7 @@ footer ul li {
     align-items: start;
     padding-top: 50px;
     padding-bottom: 50px;
-    font-size: 16px;
-    /* opacity: 0.5; */
+    /* font-size: 18px; */
 }
 
 .footer-left {
@@ -276,6 +310,11 @@ footer ul li {
 .post-updated {
     /* font-size: 18px; */
     opacity: 0.3;
+    margin-left: 10px;
+}
+
+.post-content {
+    margin-top: 40px;
 }
 
 /* Light/Dark mode toggle */

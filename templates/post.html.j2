@@ -2,11 +2,10 @@
 {% block content %}
 
 <h1>{{post.title}}</h1>
-<span class="post-date">{{ post.formatted_date() }}</span>
-{% if post.has_update() %} <span class="post-updated">(updated {{ post.formatted_updated() }})</span>{% endif %}
-</span>
-<br />
-<br />
+<span class="post-date">{{ post.formatted_date() }}</span>{% if post.has_update() %} <span class="post-updated">(updated {{ post.formatted_updated() }})</span>{% endif %}
+
+<div class="post-content">
 {{post.html|safe}}
+</div>
 
 {% endblock %}
