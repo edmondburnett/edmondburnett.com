@@ -40,11 +40,7 @@ pub async fn root(State(state): State<AppState>) -> impl IntoResponse {
 #[template(path = "post.html.j2")]
 #[allow(dead_code)]
 struct PostTemplate {
-    id: String,
-    title: String,
-    description: String,
-    tags: Vec<String>,
-    html: String,
+    post: Post,
 }
 
 pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> impl IntoResponse {
@@ -61,14 +57,7 @@ pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> imp
         return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
     }
 
-    PostTemplate {
-        id: post.id,
-        title: post.title,
-        description: post.description,
-        tags: post.tags,
-        html: post.html,
-    }
-    .into_response()
+    PostTemplate { post }.into_response()
 }
 
 #[derive(Template, WebTemplate)]

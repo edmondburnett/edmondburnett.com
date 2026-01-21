@@ -12,7 +12,7 @@ pub struct Post {
     pub tags: Vec<String>,
     pub html: String,
     pub date: DateTime<Utc>,
-    pub updated: Option<DateTime<Utc>>,
+    pub updated: DateTime<Utc>,
     pub draft: bool,
 }
 
@@ -73,10 +73,23 @@ impl Post {
     }
 
     #[allow(dead_code)]
+    pub fn has_update(&self) -> bool {
+        self.updated > self.date
+    }
+
     pub fn formatted_date(&self) -> String {
-        self.date
-            .with_timezone(&Pacific)
-            .format("%a %b %d %Y %I:%M:%S %p %Z")
+        self.format_date_value(self.date)
+    }
+
+    #[allow(dead_code)]
+    pub fn formatted_updated(&self) -> String {
+        self.format_date_value(self.updated)
+    }
+
+    fn format_date_value(&self, date: DateTime<Utc>) -> String {
+        date.with_timezone(&Pacific)
+            // .format("%a %b %d %Y %I:%M:%S %p %Z")
+            .format("%A %B %d, %Y")
             .to_string()
     }
 }
