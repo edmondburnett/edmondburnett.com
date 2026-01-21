@@ -201,10 +201,13 @@ footer ul li {
     display: flex;
     gap: 1rem;
     padding-top: 4px;
+    /* margin-right: auto; */
+    /* margin-left: 20px; */
 }
 
 .footer-right {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     padding-top: 4px;
 }
