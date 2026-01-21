@@ -329,7 +329,7 @@ footer ul li {
 .posts-list {
     margin-top: 10px;
     display: grid;
-    gap: 2rem; /* Space between posts */
+    gap: 0.8rem; /* Space between posts */
 }
 
 .posts-list-item {
