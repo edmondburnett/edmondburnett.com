@@ -7,6 +7,7 @@ use crate::handlers;
 pub fn app_routes() -> Router<AppState> {
     Router::new()
         .route("/", get(handlers::root))
+        .route("/archive", get(handlers::archive))
         .route("/p/{id}", get(handlers::post))
         .route_service("/favicon.ico", ServeFile::new("static/favicon.ico"))
         .route_service("/main_old.css", ServeFile::new("static/main_old.css"))
