@@ -72,7 +72,6 @@ impl Post {
         b.date.cmp(&a.date)
     }
 
-    #[allow(dead_code)]
     pub fn has_update(&self) -> bool {
         self.updated > self.date
     }
@@ -81,9 +80,12 @@ impl Post {
         self.format_date_value(self.date)
     }
 
-    #[allow(dead_code)]
     pub fn formatted_updated(&self) -> String {
         self.format_date_value(self.updated)
+    }
+
+    pub fn short_date(&self) -> String {
+        self.date.with_timezone(&Pacific).format("%m-%d-%Y").to_string()
     }
 
     fn format_date_value(&self, date: DateTime<Utc>) -> String {

@@ -326,6 +326,40 @@ footer ul li {
     margin-top: 40px;
 }
 
+.posts-list {
+    margin-top: 10px;
+    display: grid;
+    gap: 2rem; /* Space between posts */
+}
+
+.posts-list-item {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Date column auto-width, content fills rest */
+    gap: 2rem; /* Space between date and content */
+    align-items: start; /* Align date with top of title */
+}
+
+.posts-list-date {
+    /* padding-top: 4px; */
+    color: #666;
+    white-space: nowrap; /* Prevent date from wrapping */
+}
+
+.posts-list-content {
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+}
+
+.posts-list-title {
+    margin: 0;
+}
+
+.posts-list-description {
+    margin: 0;
+    color: #555;
+}
+
 /* Light/Dark mode toggle */
 #theme-toggle {
     background: transparent;

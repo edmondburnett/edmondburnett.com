@@ -4,7 +4,7 @@ title: PGP Public Key
 updated: 2026-01-20T21:17:59Z
 ---
 
-This is the current public encryption key for [\_@edmondburnett.com](mailto:_@edmondburnett.com). You may also download it from [keys.openpgp.org](https://keys.openpgp.org/vks/v1/by-fingerprint/8551C74E5C74C6AEA7EE71C8A822EF605950DCFD).
+This is the current public key for [\_@edmondburnett.com](mailto:_@edmondburnett.com). You may also download it from [keys.openpgp.org](https://keys.openpgp.org/vks/v1/by-fingerprint/8551C74E5C74C6AEA7EE71C8A822EF605950DCFD).
 
 ```pgp
 -----BEGIN PGP PUBLIC KEY BLOCK-----
