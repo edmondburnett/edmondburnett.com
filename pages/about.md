@@ -21,7 +21,7 @@ infrastructure & ops. Connect with me on [Linkedin](https://www.linkedin.com/in/
 
 ## About this site
 
-This site serves as one of several extensions of my personal writing and note-taking system (or Zettelkasten), whenever
-I feel like posting about work or technical subjects in a (b)log-like format.
+This site serves as one of several public-facing extensions of my personal writing and note-taking system (or
+Zettelkasten), whenever I feel like posting about technical subjects in a (b)log-like format.
 
 It's written in Rust with axum and tokio. View the [source code](https://github.com/edmondburnett/edmondburnett.com).

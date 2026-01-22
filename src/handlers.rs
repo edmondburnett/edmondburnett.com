@@ -3,7 +3,8 @@ use crate::page::Page;
 use crate::post::Post;
 use askama::Template;
 use askama_web::WebTemplate;
-use axum::{extract::Path, extract::State, http::StatusCode, response::Html, response::IntoResponse};
+use axum::{extract::Path, extract::State, http::StatusCode, http::header, response::Html, response::IntoResponse};
+use rss::{ChannelBuilder, ItemBuilder};
 
 #[derive(Template, WebTemplate)]
 #[template(path = "404.html.j2")]
@@ -92,4 +93,29 @@ pub async fn page(State(_state): State<AppState>, Path(page_name): Path<String>)
     };
 
     PageTemplate { page }.into_response()
+}
+
+pub async fn rss(State(state): State<AppState>) -> impl IntoResponse {
+    let mut items: Vec<rss::Item> = Vec::new();
+
+    for post in state.posts.iter() {
+        let item = ItemBuilder::default()
+            .title(Some(post.title.clone()))
+            .link(Some(format!("https://edmondburnett.com/p/{}", post.id)))
+            .description(Some(post.description.clone()))
+            .pub_date(Some(post.date.to_rfc2822()))
+            .build();
+        items.push(item);
+    }
+
+    let channel = ChannelBuilder::default()
+        .title("edmondburnett.com")
+        .link("https://edmondburnett.com")
+        .description("Personal blog on code, infrastructure, and technology")
+        .items(items)
+        .build();
+
+    let rss_string = channel.to_string();
+
+    ([(header::CONTENT_TYPE, "text/xml; charset=utf-8")], rss_string)
 }

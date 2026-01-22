@@ -1,6 +1,6 @@
 use crate::markdown::{Markdown, PostMetadata};
 use chrono::{DateTime, Utc};
-use chrono_tz::US::Pacific;
+use chrono_tz::America::Los_Angeles as Pacific;
 use color_eyre::Result;
 
 #[derive(Debug, Clone)]
