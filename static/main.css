@@ -23,6 +23,7 @@
     --bgtrans: 0.3s;
     --colortrans: 0.1s;
     --gold: #ffb800;
+    --bullet: #555;
 }
 
 .dark {
@@ -203,6 +204,30 @@ main p {
 h2 {
     margin-top: 40px;
     margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+main ul {
+    padding: 0;
+    margin: 0 45px 0px 40px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 160%;
+}
+
+main ul > li {
+    list-style-type: disc;
+    white-space: unset;
+    margin-bottom: 0.2rem;
+    color: var(--bullet);
+}
+
+main ul > li > span {
+    color: var(--text);
 }
 
 footer {

@@ -139,7 +139,9 @@ impl<T: DeserializeOwned> Markdown<T> {
 
     fn convert_to_html(parsed: &ParsedEntity) -> String {
         let arena = Arena::new();
-        let root = parse_document(&arena, &parsed.content, &Options::default());
+        let mut options = Options::default();
+        options.render.r#unsafe = true;
+        let root = parse_document(&arena, &parsed.content, &options);
 
         for node in root.descendants() {
             let mut data = node.data.borrow_mut();
@@ -152,7 +154,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         }
 
         let mut html = String::new();
-        format_html(root, &Options::default(), &mut html).expect("Failed to format HTML");
+        format_html(root, &options, &mut html).expect("Failed to format HTML");
 
         // Extract language from class and create label
         html = regex::Regex::new(r#"<pre><code class="language-(\w+)"#)
