@@ -111,7 +111,7 @@ pub async fn rss(State(state): State<AppState>) -> impl IntoResponse {
     let channel = ChannelBuilder::default()
         .title("edmondburnett.com")
         .link("https://edmondburnett.com")
-        .description("Personal blog on code, infrastructure, and technology")
+        .description("A personal blog on code, infrastructure, and engineering.")
         .items(items)
         .build();
 
