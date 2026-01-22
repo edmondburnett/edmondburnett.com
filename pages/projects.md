@@ -4,8 +4,6 @@ title: Projects
 updated: 2026-01-21T16:39:30Z
 ---
 
-## Founder
-
 - [Stealth Startup](#) :: <span>Currently building a social, real-time logging and data analytics platform for a niche
   industry as a side-hustle. Stack: Python, Rust, TypeScript, Sveltekit, TailwindCSS, PostgreSQL, PostGIS, RabbitMQ,
   Redis, Kubernetes. Geospatial and mapping tech. More details approaching launch.</span>
