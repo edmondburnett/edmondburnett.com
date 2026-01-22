@@ -1,7 +1,7 @@
 {% extends "layout.html.j2" %}
 {% block content %}
 
-<h1>All Posts</h1>
+<h1>All Posts ({{ posts.len() }})</h1>
 <div class="posts-list">
 {% for post in posts %}
     <div class="posts-list-item">
