@@ -97,8 +97,14 @@ pub async fn page(State(_state): State<AppState>, Path(page_name): Path<String>)
 
 pub async fn rss(State(state): State<AppState>) -> impl IntoResponse {
     let mut items: Vec<rss::Item> = Vec::new();
+    let mut count = 0;
 
     for post in state.posts.iter() {
+        count += 1;
+        if count > 10 {
+            break;
+        }
+
         let item = ItemBuilder::default()
             .title(Some(post.title.clone()))
             .link(Some(format!("https://edmondburnett.com/p/{}", post.id)))

@@ -10,7 +10,7 @@ tags:
     - python
 ---
 
-I recently ran into an issue where I needed to remove a port number from URLs forwarded from a Squid caching proxy
+I recently ran into a weird issue where I needed to remove a port number from URLs forwarded from a Squid caching proxy
 server. In my specific use case, the port number arrives from some custom handling being done for a client, but this
 method can be used to redirect or rewrite URLs matching any criteria you specify.
 
