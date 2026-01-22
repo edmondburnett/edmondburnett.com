@@ -3,7 +3,7 @@ id: python-push-to-deploy
 title: Push-To-Deploy with Git, Python edition
 description: Example of using a Python script for simple application deployment via Git hooks.
 date: 2014-07-28T04:44:33Z
-updated: 2026-01-21T18:33:38Z
+updated: 2014-07-28T04:44:33Z
 draft: false
 tags:
     - git

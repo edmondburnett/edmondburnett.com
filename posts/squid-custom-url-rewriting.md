@@ -3,7 +3,7 @@ id: squid-custom-url-rewriting
 title: Custom URL rewriting with Squid
 description: How to perform arbitrary URL rewriting on a caching Squid proxy with a simple bit of Python.
 date: 2015-11-07T19:09:40Z
-updated: 2026-01-21T18:42:02Z
+updated: 2015-11-07T19:09:40Z
 draft: false
 tags:
     - caching
