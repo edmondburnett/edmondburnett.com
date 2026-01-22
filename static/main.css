@@ -91,6 +91,8 @@ pre {
     margin-bottom: 30px;
     padding: 0;
     position: relative;
+    white-space: pre;
+    max-width: 100%;
 }
 
 .code-label {
@@ -106,6 +108,7 @@ pre code {
     display: block;
     padding: 10px;
     background: var(--bgcode);
+    white-space: pre-wrap;
     transition:
         background var(--bgtrans),
         color var(--colortrans);
