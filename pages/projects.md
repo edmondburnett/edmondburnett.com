@@ -20,5 +20,4 @@ Recent or notable open-source projects I've built, maintained, or contributed to
 
 ## Other
 
-Other projects on [Github](https://github.com/edmondburnett), or [Linkedin](https://www.linkedin.com/in/edmondburnett/)
-for professional work.
+Other projects on [Github](https://github.com/edmondburnett).
