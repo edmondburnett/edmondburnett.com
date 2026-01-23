@@ -1,7 +1,6 @@
 use chrono::{DateTime, Utc};
 use color_eyre::eyre::Context;
 use color_eyre::{Result, eyre};
-use comrak::nodes::NodeValue;
 use comrak::{Arena, Options, format_html, markdown_to_html, parse_document};
 use gray_matter::engine::YAML;
 use gray_matter::{Matter, ParsedEntity};
