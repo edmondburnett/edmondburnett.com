@@ -6,7 +6,6 @@ date: 2015-11-07T19:09:40Z
 updated: 2015-11-07T19:09:40Z
 draft: false
 tags:
-    - cache
     - python
 ---
 

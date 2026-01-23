@@ -2,24 +2,26 @@ use std::str::FromStr;
 
 #[allow(dead_code)]
 enum Tag {
-    Linux,
-    Kubernetes,
-    Rust,
-    Python,
-    Neovim,
     Emacs,
+    Kubernetes,
+    Linux,
+    Meta,
+    Neovim,
+    Python,
+    Rust,
 }
 
 #[allow(dead_code)]
 impl Tag {
     pub fn as_str(&self) -> &str {
         match self {
-            Tag::Linux => "linux",
-            Tag::Kubernetes => "kubernetes",
-            Tag::Rust => "rust",
-            Tag::Python => "python",
-            Tag::Neovim => "neovim",
             Tag::Emacs => "emacs",
+            Tag::Kubernetes => "kubernetes",
+            Tag::Linux => "linux",
+            Tag::Meta => "meta",
+            Tag::Neovim => "neovim",
+            Tag::Python => "python",
+            Tag::Rust => "rust",
         }
     }
 }
@@ -29,12 +31,13 @@ impl FromStr for Tag {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "linux" => Ok(Tag::Linux),
-            "kubernetes" => Ok(Tag::Kubernetes),
-            "rust" => Ok(Tag::Rust),
-            "python" => Ok(Tag::Python),
-            "neovim" => Ok(Tag::Neovim),
             "emacs" => Ok(Tag::Emacs),
+            "kubernetes" => Ok(Tag::Kubernetes),
+            "linux" => Ok(Tag::Linux),
+            "meta" => Ok(Tag::Meta),
+            "neovim" => Ok(Tag::Neovim),
+            "python" => Ok(Tag::Python),
+            "rust" => Ok(Tag::Rust),
             _ => Err(format!("Unhandled Tag: {}", s)),
         }
     }
