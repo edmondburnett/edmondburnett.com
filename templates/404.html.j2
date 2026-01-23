@@ -2,6 +2,30 @@
 {% block content %}
 
 <h1>404 Not Found</h1>
+<br /><br />
+
+<div class="triangle-container">
+    <svg width="240" height="240" viewBox="0 0 240 240" aria-label="artifacts">
+        <!-- Background layer 3 - offset 12px right, 12px down -->
+        <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="1" opacity="0.15" transform="translate(45, 30)" clip-path="url(#clipTop)"/>
+
+        <!-- Background layer 2 - offset 8px right, 8px down -->
+        <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="1" opacity="0.25" transform="translate(30, 20)" clip-path="url(#clipTop)"/>
+
+        <!-- Background layer 1 (closest) - offset 4px right, 4px down -->
+        <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="1" opacity="0.45" transform="translate(15, 10)" clip-path="url(#clipTop)"/>
+
+        <!-- Front triangle (wireframe only) -->
+        <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="1"/>
+
+        <!-- Clipping path to hide lines inside the top triangle -->
+        <defs>
+            <clipPath id="clipTop">
+                <polygon points="100,20 180,180 20,180"/>
+            </clipPath>
+        </defs>
+    </svg>
+</div>
 
 <p>Go back <a href="/">home</a>.</p>
 

@@ -229,6 +229,23 @@ main ul > li {
     color: var(--bullet);
 }
 
+.error_main {
+    height: 100vh;
+    max-width: 768px;
+    margin: 0 auto;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.error_main a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.error_main h1 {
+    font-size: 60px;
+}
+
 footer {
     background: var(--fbg);
     transition:
@@ -278,11 +295,11 @@ footer ul li {
     align-items: center;
 }
 
-.footer-left svg polygon {
+.triangle-container svg polygon {
     stroke: black;
 }
 
-.dark .footer-left svg polygon {
+.dark .triangle-container svg polygon {
     stroke: white;
 }
 

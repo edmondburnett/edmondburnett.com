@@ -1,6 +1,8 @@
 <!DOCTYPE html><html><head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/main.css">
+    <script src="/static/scripts.js" defer></script>
 
     <script>
         if (localStorage.theme === 'dark' || (!localStorage.theme && 
@@ -11,6 +13,8 @@
 </head>
 
 <body>
-{% block content %}{% endblock %}
+    <div class="error_main">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
