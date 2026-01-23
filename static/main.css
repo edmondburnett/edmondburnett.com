@@ -229,10 +229,6 @@ main ul > li {
     color: var(--bullet);
 }
 
-main ul > li > span {
-    color: var(--text);
-}
-
 footer {
     background: var(--fbg);
     transition:
@@ -324,20 +320,19 @@ footer ul li {
 .posts-list {
     margin-top: 40px;
     display: grid;
-    gap: 0.8rem; /* Space between posts */
+    gap: 0.8rem;
 }
 
 .posts-list-item {
     display: grid;
-    grid-template-columns: auto 1fr; /* Date column auto-width, content fills rest */
-    gap: 2rem; /* Space between date and content */
-    align-items: start; /* Align date with top of title */
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
 }
 
 .posts-list-date {
-    /* padding-top: 4px; */
     color: #666;
-    white-space: nowrap; /* Prevent date from wrapping */
+    white-space: nowrap;
 }
 
 .posts-list-content {
