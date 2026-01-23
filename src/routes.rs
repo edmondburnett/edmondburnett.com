@@ -9,7 +9,7 @@ pub fn app_routes() -> Router<AppState> {
         .route("/", get(handlers::root))
         .route("/archive", get(handlers::archive))
         .route("/rss", get(handlers::rss))
-        .route("/p/{id}", get(handlers::post))
+        .route("/post/{id}", get(handlers::post))
         .route_service("/favicon.ico", ServeFile::new("static/favicon.ico"))
         // .route_service("/favicon-16x16.png", ServeFile::new("static/favicon-16x16.png"))
         // .route_service("/favicon-32x32.png", ServeFile::new("static/favicon-32x32.png"))

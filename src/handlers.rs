@@ -107,7 +107,7 @@ pub async fn rss(State(state): State<AppState>) -> impl IntoResponse {
 
         let item = ItemBuilder::default()
             .title(Some(post.title.clone()))
-            .link(Some(format!("https://edmondburnett.com/p/{}", post.id)))
+            .link(Some(format!("https://edmondburnett.com/post/{}", post.id)))
             .description(Some(post.description.clone()))
             .pub_date(Some(post.date.to_rfc2822()))
             .build();
