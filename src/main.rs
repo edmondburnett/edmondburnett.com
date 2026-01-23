@@ -10,7 +10,9 @@ mod markdown;
 mod post;
 use post::Post;
 mod page;
+mod project_category;
 mod routes;
+mod tag;
 mod validation;
 
 #[derive(Parser)]

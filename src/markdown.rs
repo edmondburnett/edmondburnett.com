@@ -28,12 +28,13 @@ pub struct PageMetadata {
     pub updated: DateTime<Utc>,
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 #[allow(dead_code)]
-pub struct TutorialMetadata {
-    // example of another metadata type
-    pub difficulty: String,
-    pub duration: u32,
+pub struct ProjectMetadata {
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub tags: Vec<String>,
 }
 
 #[derive(Debug)]
