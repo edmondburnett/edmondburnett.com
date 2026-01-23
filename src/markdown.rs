@@ -55,7 +55,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         let mut html = String::new();
 
         if full {
-            html = Self::convert_to_html(&parsed);
+            html = Self::convert_to_html(&parsed)?;
             raw_content = parsed.content;
 
             if html.trim().is_empty() {
@@ -94,37 +94,30 @@ impl<T: DeserializeOwned> Markdown<T> {
         markdown_to_html(&parsed.content, &Options::default())
     }
 
-    fn convert_to_html(parsed: &ParsedEntity) -> String {
+    fn convert_to_html(parsed: &ParsedEntity) -> Result<String> {
         let arena = Arena::new();
         let root = parse_document(&arena, &parsed.content, &Options::default());
 
-        for node in root.descendants() {
-            let mut data = node.data.borrow_mut();
-            if let NodeValue::CodeBlock(ref mut block) = data.value {
-                let language = block.info.trim();
-                if !language.is_empty() {
-                    block.info = language.to_string();
-                }
-            }
-        }
-
         let mut html = String::new();
-        format_html(root, &Options::default(), &mut html).expect("Failed to format HTML");
+        format_html(root, &Options::default(), &mut html).wrap_err("Failed to format HTML")?;
 
-        // Extract language from class and create label
-        html = regex::Regex::new(r#"<pre><code class="language-(\w+)"#)
-            .unwrap()
-            .replace_all(&html, |caps: &regex::Captures| {
+        let html = Self::add_code_labels(&html)?;
+
+        Ok(html)
+    }
+
+    fn add_code_labels(html: &str) -> Result<String> {
+        let re = regex::Regex::new(r#"<pre><code class="language-(\w+)"#).wrap_err("Failed to compile regex")?;
+
+        Ok(re
+            .replace_all(html, |caps: &regex::Captures| {
                 let lang = &caps[1];
                 format!(
                     r#"<pre><div class="code-label">{}</div><code class="language-{}"#,
                     lang, lang
                 )
             })
-            .to_string();
-
-        html = html.replace("</code></pre>", "</code></pre>");
-        html
+            .to_string())
     }
 
     fn get_path(dir: &str) -> PathBuf {
