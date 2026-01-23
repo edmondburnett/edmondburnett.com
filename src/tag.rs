@@ -1,3 +1,4 @@
+use color_eyre::Result;
 use std::str::FromStr;
 
 #[allow(dead_code)]

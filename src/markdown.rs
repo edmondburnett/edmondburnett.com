@@ -94,55 +94,9 @@ impl<T: DeserializeOwned> Markdown<T> {
         markdown_to_html(&parsed.content, &Options::default())
     }
 
-    // fn convert_to_html(parsed: &ParsedEntity) -> String {
-    //     let arena = Arena::new();
-    //     let root = parse_document(&arena, &parsed.content, &Options::default());
-    //
-    //     // Walk through and modify code blocks
-    //     for node in root.descendants() {
-    //         let mut data = node.data.borrow_mut();
-    //         if let NodeValue::CodeBlock(ref mut block) = data.value {
-    //             let language = block.info.trim();
-    //             if !language.is_empty() {
-    //                 block.info = language.to_string();
-    //             }
-    //         }
-    //     }
-    //
-    //     let mut html = String::new();
-    //     format_html(root, &Options::default(), &mut html).expect("Failed to format HTML");
-    //     html
-    // }
-
-    // fn convert_to_html(parsed: &ParsedEntity) -> String {
-    //     let arena = Arena::new();
-    //     let root = parse_document(&arena, &parsed.content, &Options::default());
-    //
-    //     for node in root.descendants() {
-    //         let mut data = node.data.borrow_mut();
-    //         if let NodeValue::CodeBlock(ref mut block) = data.value {
-    //             let language = block.info.trim();
-    //             if !language.is_empty() {
-    //                 block.info = language.to_string();
-    //             }
-    //         }
-    //     }
-    //
-    //     let mut html = String::new();
-    //     format_html(root, &Options::default(), &mut html).expect("Failed to format HTML");
-    //
-    //     // Wrap code blocks with a language container
-    //     html = html.replace("<pre><code", "<pre><div class=\"code-wrapper\"><code");
-    //     html = html.replace("</code></pre>", "</code></div></pre>");
-    //
-    //     html
-    // }
-
     fn convert_to_html(parsed: &ParsedEntity) -> String {
         let arena = Arena::new();
-        let mut options = Options::default();
-        options.render.r#unsafe = true;
-        let root = parse_document(&arena, &parsed.content, &options);
+        let root = parse_document(&arena, &parsed.content, &Options::default());
 
         for node in root.descendants() {
             let mut data = node.data.borrow_mut();
@@ -155,7 +109,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         }
 
         let mut html = String::new();
-        format_html(root, &options, &mut html).expect("Failed to format HTML");
+        format_html(root, &Options::default(), &mut html).expect("Failed to format HTML");
 
         // Extract language from class and create label
         html = regex::Regex::new(r#"<pre><code class="language-(\w+)"#)
