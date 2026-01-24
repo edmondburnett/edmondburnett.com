@@ -4,11 +4,11 @@ title: About
 updated: 2026-01-21T11:57:17Z
 ---
 
-Hello, I'm a Software Engineer based in Seattle, WA. I enjoy writing about technical topics related to my work and play
-in code, infrastructure, and systems, or making observations on the industry.
+Hello, I'm a Software Engineer based in Seattle, WA. I write about technical topics related to my work and play in code,
+infrastructure, and systems, or making observations on the industry.
 
 My recent programming work is primarily in Python, Rust, and TypeScript. I also use or have used Go (Golang), C, C++,
-Lua, Bash, C#, various Lisps and esolangs, and others. Daily tools consist of Arch Linux, macOS, Neovim, sometimes Emacs
+Lua, Bash, various Lisps and esolangs, and others. Daily tools consist of Arch Linux, macOS, Neovim, sometimes Emacs
 (particularly for Lisps).
 
 Personal interests include music production, DIY electronics, photography, travel, weightlifting, hiking, and bicycling.
