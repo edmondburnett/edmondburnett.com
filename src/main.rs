@@ -10,6 +10,8 @@ mod markdown;
 mod post;
 use post::Post;
 mod page;
+mod project;
+use project::Project;
 mod project_category;
 mod routes;
 mod tag;
@@ -34,6 +36,7 @@ enum Commands {
 #[derive(Clone)]
 pub struct AppState {
     posts: Arc<Vec<Post>>,
+    projects: Arc<Vec<Project>>,
 }
 
 #[tokio::main]
@@ -63,9 +66,13 @@ async fn main() -> Result<()> {
 
 async fn start_server(port: u16) -> Result<()> {
     let posts = Post::list()?;
-    tracing::info!("Loaded {} posts.", posts.len());
+    let projects = Project::list()?;
+    tracing::info!("Loaded {} posts, {} projects.", posts.len(), projects.len());
 
-    let state = AppState { posts: Arc::new(posts) };
+    let state = AppState {
+        posts: Arc::new(posts),
+        projects: Arc::new(projects),
+    };
 
     let app = routes::app_routes().with_state(state).layer(TraceLayer::new_for_http());
 

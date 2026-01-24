@@ -1,8 +1,9 @@
 use color_eyre::Result;
 use std::str::FromStr;
 
+#[derive(Debug, Clone)]
 #[allow(dead_code)]
-enum Tag {
+pub enum Tag {
     Emacs,
     Kubernetes,
     Linux,
