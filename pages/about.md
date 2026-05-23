@@ -1,7 +1,7 @@
 ---
 id: about
 title: About
-updated: 2026-01-21T11:57:17Z
+updated: 2026-05-21T18:27:21Z
 ---
 
 Hello, I'm a Software Engineer based in Seattle, WA. I write about technical topics related to my work and play in code,
@@ -16,8 +16,8 @@ I hold a Level 3 Extra Class amateur radio license from the FCC.
 
 ## Work Availability
 
-Currently open for work in Backend or Fullstack Software Engineering roles. I'm also highly skilled in production
-infrastructure & ops. Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
+Currently open for work in Backend or Fullstack Software Engineering roles. I'm also highly skilled in AI/LLM
+integrations, infrastructure, and ops. Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
 
 ## About this site
 
