@@ -27,7 +27,7 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     Serve {
-        #[arg(short, long, default_value = "3000")]
+        #[arg(short, long, default_value = "7000")]
         port: u16,
     },
     Validate,
@@ -57,7 +57,7 @@ async fn main() -> Result<()> {
         }
         None => {
             // start w/default port
-            start_server(3000).await?;
+            start_server(7000).await?;
         }
     }
 
