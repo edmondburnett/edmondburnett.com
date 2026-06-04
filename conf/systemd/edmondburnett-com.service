@@ -1,0 +1,20 @@
+[Unit]
+Description=edmondburnett.com web service
+After=network.target
+
+[Service]
+Type=simple
+User=edmondburnett-com
+Group=edmondburnett-com
+ExecStart=/srv/http/edmondburnett.com/edmondburnett-com
+Restart=on-failure
+RestartSec=5
+Environment=RUST_LOG=info
+WorkingDirectory=/srv/http/edmondburnett.com
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/http/edmondburnett.com
+
+[Install]
+WantedBy=multi-user.target
