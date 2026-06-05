@@ -4,6 +4,10 @@ cargo build --release
 sudo systemctl stop edmondburnett-com.service
 #sudo mkdir -p /srv/http/edmondburnett.com
 #sudo useradd --system --no-create-home --shell /usr/bin/nologin edmondburnett-com
+sudo rm /srv/http/edmondburnett.com/posts/*
+sudo rm /srv/http/edmondburnett.com/pages/*
+sudo rm /srv/http/edmondburnett.com/projects/*
+sudo rm /srv/http/edmondburnett.com/static/*
 sudo cp conf/systemd/edmondburnett-com.service /srv/http/edmondburnett.com
 sudo cp target/release/edmondburnett-com /srv/http/edmondburnett.com
 sudo cp -r pages /srv/http/edmondburnett.com
