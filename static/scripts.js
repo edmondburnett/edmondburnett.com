@@ -3,7 +3,6 @@ function toggleTheme() {
     localStorage.theme = document.documentElement.classList.contains('dark')
         ? 'dark'
         : 'light'
-    updateIcon()
 }
 
 // Listen for system theme changes
