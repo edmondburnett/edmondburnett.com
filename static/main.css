@@ -114,6 +114,14 @@ pre code {
         color var(--colortrans);
 }
 
+:not(pre) > code {
+    padding: 2px 5px;
+    background: var(--bgcode);
+    transition:
+        background var(--bgtrans),
+        color var(--colortrans);
+}
+
 .code-copy-btn {
     position: absolute;
     top: 10px;
