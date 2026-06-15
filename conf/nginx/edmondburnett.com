@@ -33,7 +33,6 @@ server {
 
     location /static/ {
         alias /srv/http/edmondburnett.com/static/;
-        expires 7d;
         access_log off;
     }
 
@@ -58,13 +57,11 @@ server {
 
     location /favicon.ico {
         alias /srv/http/edmondburnett.com/static/favicon.ico;
-        expires 30d;
         access_log off;
     }
 
     location /robots.txt {
         alias /srv/http/edmondburnett.com/static/robots.txt;
-        expires 30d;
         access_log off;
     }
 

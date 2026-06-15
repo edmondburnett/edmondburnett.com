@@ -15,6 +15,7 @@ sudo cp -r posts /srv/http/edmondburnett.com
 sudo cp -r projects /srv/http/edmondburnett.com
 sudo cp -r static /srv/http/edmondburnett.com
 sudo chown -R edmondburnett-com:edmondburnett-com /srv/http/edmondburnett.com
+#sudo sh -c 'rm -rf /var/cache/nginx-edmondburnett-com/*'
 sudo systemctl link /srv/http/edmondburnett.com/edmondburnett-com.service
 sudo systemctl daemon-reload
 sudo systemctl restart edmondburnett-com.service
