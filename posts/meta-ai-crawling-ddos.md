@@ -50,11 +50,13 @@ Some time ago, in anticipation of Meta linking their platforms with the Fedivers
 became signatories of [Fedipact](https://fedipact.online/), a pledge to broadly defederate Meta from the network. But
 this method of harvesting bypasses the need to access content through normal federation.
 
-Part of the fix moving forward was to turn this remote-browsing behavior off entirely. Unfortunately, leaving this
-feature on is leaving an open invitation for the next AI harvester to do exactly the same thing. Trading a bit of that
-openness in exchange for a instance that stays online felt like the obvious call.
+Part of the fix moving forward was to turn this remote-browsing behavior off entirely. To do this, go to
+Preferences->Administration->Server Settings->Discovery and turn the two remote options under the Public Timelines
+section to `Authenticated Users Only`. Unfortunately, leaving this feature on is leaving an open invitation for the next
+AI harvester to do exactly the same thing. For a small instance, trading a bit of that openness in exchange for a server
+that stays online feels like the obvious call.
 
-The softest approach is obviously to disallow the user agent in your `robots.txt`. Meta
+Outside of this, the softest approach is obviously to disallow the user agent in your `robots.txt`. Meta
 [claims](https://developers.facebook.com/docs/sharing/webmasters/web-crawlers#identify-4) to honor this, but after a few
 hours the requests were still coming. I suspect if you aren't prepared with this opt-out ahead of time, the bot simply
 proceeds and they don't bother to keep checking for an updated `robots.txt`.
