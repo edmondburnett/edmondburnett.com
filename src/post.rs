@@ -73,7 +73,7 @@ impl Post {
     }
 
     pub fn has_update(&self) -> bool {
-        self.updated > self.date
+        self.updated - self.date >= chrono::Duration::days(1)
     }
 
     pub fn formatted_date(&self) -> String {
