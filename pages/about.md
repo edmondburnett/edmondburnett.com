@@ -16,8 +16,8 @@ I hold a Level 3 Extra Class amateur radio license from the FCC.
 
 ## Work Availability
 
-Currently open for work in Backend or Fullstack Software Engineering roles. I'm also highly skilled in AI/LLM
-integrations, infrastructure, and ops. Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
+Currently open for work in backend or fullstack Software Engineering roles. I'm also highly skilled in infrastructure,
+ops, product, and LLM integrations. Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
 
 ## About this site
 
