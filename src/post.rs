@@ -32,7 +32,7 @@ impl Post {
         })
     }
 
-    pub fn list() -> Result<Vec<Post>> {
+    pub fn list(include_drafts: bool) -> Result<Vec<Post>> {
         let mut posts = Vec::new();
 
         for entry in std::fs::read_dir("posts")? {
@@ -47,7 +47,7 @@ impl Post {
                 if let Some(id) = file_stem.to_str() {
                     let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
 
-                    if markdown.metadata().draft {
+                    if markdown.metadata().draft && !include_drafts {
                         continue;
                     }
 

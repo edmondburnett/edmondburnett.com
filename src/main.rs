@@ -37,6 +37,7 @@ enum Commands {
 pub struct AppState {
     posts: Arc<Vec<Post>>,
     projects: Arc<Vec<Project>>,
+    current_env: String,
 }
 
 #[tokio::main]
@@ -64,14 +65,25 @@ async fn main() -> Result<()> {
     Ok(())
 }
 
+fn envvar_or_default(key: &str, default: Option<&str>) -> String {
+    std::env::var(key)
+        .ok()
+        .filter(|v| !v.trim().is_empty())
+        .unwrap_or_else(|| default.unwrap_or("").to_string())
+}
+
 async fn start_server(port: u16) -> Result<()> {
-    let posts = Post::list()?;
+    let current_env = envvar_or_default("CURRENT_ENV", Some("local"));
+    let include_drafts = current_env != "prod";
+
+    let posts = Post::list(include_drafts)?;
     let projects = Project::list()?;
     tracing::info!("Loaded {} posts, {} projects.", posts.len(), projects.len());
 
     let state = AppState {
         posts: Arc::new(posts),
         projects: Arc::new(projects),
+        current_env,
     };
 
     let app = routes::app_routes().with_state(state).layer(TraceLayer::new_for_http());

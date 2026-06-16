@@ -10,6 +10,7 @@ ExecStart=/srv/http/edmondburnett.com/edmondburnett-com
 Restart=on-failure
 RestartSec=5
 Environment=RUST_LOG=info
+EnvironmentFile=-/srv/http/edmondburnett.com/.env
 WorkingDirectory=/srv/http/edmondburnett.com
 NoNewPrivileges=true
 ProtectSystem=strict

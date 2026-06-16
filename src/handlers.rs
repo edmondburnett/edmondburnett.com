@@ -59,7 +59,7 @@ struct PostTemplate {
     post: Post,
 }
 
-pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> impl IntoResponse {
+pub async fn post(State(state): State<AppState>, Path(id): Path<String>) -> impl IntoResponse {
     let post = match Post::new(&id) {
         Ok(p) => p,
         Err(e) => {
@@ -68,7 +68,7 @@ pub async fn post(State(_state): State<AppState>, Path(id): Path<String>) -> imp
         }
     };
 
-    if post.draft {
+    if post.draft && state.current_env == "prod" {
         tracing::warn!(post_id = %id, "Attempt to access draft post");
         return (StatusCode::NOT_FOUND, NotFoundTemplate).into_response();
     }
