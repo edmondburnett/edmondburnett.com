@@ -97,7 +97,7 @@ This of course cleaned up the log spam.
 
 Note that these IP ranges are likely regional and may be different for you. Another consideration is you also may want
 to continue to allow [other Meta bots](https://developers.facebook.com/docs/sharing/webmasters/web-crawlers) to access
-your application. FacebookExternalHit, for example, caches preview cards when someone posts a link to your site on a
+your application. `facebookexternalhit`, for example, caches preview cards when someone posts a link to your site on a
 Meta platform.
 
 I suppose the lesson here is that the old default — leave things open in good faith, let the public web be public — is
