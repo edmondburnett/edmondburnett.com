@@ -338,6 +338,11 @@ footer ul li {
     margin-left: 10px;
 }
 
+.post-draft {
+    color: var(--gold);
+    margin-left: 10px;
+}
+
 .post-content {
     margin-top: 40px;
 }
