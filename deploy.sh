@@ -1,23 +1,70 @@
 #!/usr/bin/env zsh
+set -euo pipefail
 
+ENV="${1:-local}"
+
+if [[ "$ENV" != "local" && "$ENV" != "prod" ]]; then
+    echo "usage: $0 [local|prod]   (default: local)" >&2
+    exit 1
+fi
+
+DEST=/srv/http/edmondburnett.com
+REMOTE=moon
+SERVICE=edmondburnett-com.service
+ASSET_DIRS=(pages posts projects static)
+
+# Always test and build locally before deploying anywhere.
+cargo test
 cargo build --release
-sudo systemctl stop edmondburnett-com.service
-#sudo mkdir -p /srv/http/edmondburnett.com
-#sudo useradd --system --no-create-home --shell /usr/bin/nologin edmondburnett-com
-sudo rm /srv/http/edmondburnett.com/posts/*
-sudo rm /srv/http/edmondburnett.com/pages/*
-sudo rm /srv/http/edmondburnett.com/projects/*
-sudo rm /srv/http/edmondburnett.com/static/*
-sudo cp conf/systemd/edmondburnett-com.service /srv/http/edmondburnett.com
-sudo cp conf/nginx/edmondburnett.com /etc/nginx/sites-available/edmondburnett.com
-sudo cp target/release/edmondburnett-com /srv/http/edmondburnett.com
-sudo cp -r pages /srv/http/edmondburnett.com
-sudo cp -r posts /srv/http/edmondburnett.com
-sudo cp -r projects /srv/http/edmondburnett.com
-sudo cp -r static /srv/http/edmondburnett.com
-sudo chown -R edmondburnett-com:edmondburnett-com /srv/http/edmondburnett.com
-sudo sh -c 'rm -rf /var/cache/nginx-edmondburnett-com/*'
-sudo systemctl link /srv/http/edmondburnett.com/edmondburnett-com.service
-sudo systemctl daemon-reload
-sudo systemctl reload nginx
-sudo systemctl restart edmondburnett-com.service
+
+if [[ "$ENV" == "local" ]]; then
+    echo "==> deploying locally to $DEST"
+
+    sudo systemctl stop "$SERVICE"
+
+    sudo cp conf/systemd/"$SERVICE" "$DEST"
+    sudo cp target/release/edmondburnett-com "$DEST"
+
+    for dir in $ASSET_DIRS; do
+        sudo rm -rf "$DEST/$dir"
+        sudo cp -r "$dir" "$DEST"
+    done
+
+    sudo chown -R edmondburnett-com:edmondburnett-com "$DEST"
+    sudo systemctl link "$DEST/$SERVICE"
+    sudo systemctl daemon-reload
+    sudo systemctl restart "$SERVICE"
+else
+    echo "==> deploying to prod ($REMOTE:$DEST)"
+
+    # Relative to the remote home, so it works regardless of differing home paths.
+    STAGE=dev/edmondburnett-com-deploy-staging
+    STAGE_WEB="$STAGE/web"        # binary + asset dirs -> $DEST
+    STAGE_NGINX="$STAGE/nginx"    # nginx config -> /etc/nginx/sites-available
+
+    # Transfer into staging as our own user (no sudo, no TTY needed).
+    # --mkpath creates missing staging dirs on the first run.
+    rsync -az --mkpath target/release/edmondburnett-com conf/systemd/"$SERVICE" "$REMOTE:$STAGE_WEB/"
+
+    for dir in $ASSET_DIRS; do
+        rsync -az --delete --mkpath "$dir" "$REMOTE:$STAGE_WEB/"
+    done
+
+    rsync -az --mkpath conf/nginx/edmondburnett.com "$REMOTE:$STAGE_NGINX/"
+
+    # One interactive session: sudo prompts once, then caches for the rest.
+    ssh -t "$REMOTE" "
+        set -e
+        sudo systemctl stop $SERVICE
+        sudo rsync -a --delete $STAGE_WEB/ $DEST/
+        sudo cp $STAGE_NGINX/edmondburnett.com /etc/nginx/sites-available/edmondburnett.com
+        sudo chown -R edmondburnett-com:edmondburnett-com $DEST
+        sudo find /var/cache/nginx-edmondburnett-com -mindepth 1 -delete
+        sudo systemctl link $DEST/$SERVICE
+        sudo systemctl daemon-reload
+        sudo systemctl reload nginx
+        sudo systemctl restart $SERVICE
+    "
+fi
+
+echo "==> $ENV deploy complete"

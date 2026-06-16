@@ -56,7 +56,7 @@ section to `Authenticated Users Only`. Unfortunately, leaving this feature on is
 AI harvester to do exactly the same thing. For a small instance, trading a bit of that openness in exchange for a server
 that stays online feels like the obvious call.
 
-Outside of this, the softest approach is obviously to disallow the user agent in your `robots.txt`. Meta
+Outside of this, the softest approach is to disallow the `meta-externalagent` user agent in your `robots.txt`. Meta
 [claims](https://developers.facebook.com/docs/sharing/webmasters/web-crawlers#identify-4) to honor this, but after a few
 hours the requests were still coming. I suspect if you aren't prepared with this opt-out ahead of time, the bot simply
 proceeds and they don't bother to keep checking for an updated `robots.txt`.
