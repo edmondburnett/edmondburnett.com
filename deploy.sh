@@ -13,13 +13,10 @@ REMOTE=moon
 SERVICE=edmondburnett-com.service
 ASSET_DIRS=(pages posts projects static)
 
-# Always test and build locally before deploying anywhere.
 cargo test
 cargo build --release
 
 # Render the runtime env file that the systemd unit reads (EnvironmentFile).
-# This is how CURRENT_ENV follows the deploy target instead of being hard-coded
-# in the committed unit file.
 ENV_FILE="$(mktemp)"
 trap 'rm -f "$ENV_FILE"' EXIT
 printf 'CURRENT_ENV=%s\n' "$ENV" > "$ENV_FILE"
@@ -52,7 +49,6 @@ else
     STAGE_NGINX="$STAGE/nginx"    # nginx config -> /etc/nginx/sites-available
 
     # Transfer into staging as our own user (no sudo, no TTY needed).
-    # --mkpath creates missing staging dirs on the first run.
     rsync -az --mkpath target/release/edmondburnett-com conf/systemd/"$SERVICE" "$REMOTE:$STAGE_WEB/"
     rsync -az "$ENV_FILE" "$REMOTE:$STAGE_WEB/.env"
 
