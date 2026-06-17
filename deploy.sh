@@ -14,7 +14,7 @@ SERVICE=edmondburnett-com.service
 ASSET_DIRS=(pages posts projects static)
 
 cargo test
-cargo build --release
+cargo run --release -- validate
 
 # Render the runtime env file that the systemd unit reads (EnvironmentFile).
 ENV_FILE="$(mktemp)"

@@ -36,6 +36,7 @@ enum Commands {
 #[derive(Clone)]
 pub struct AppState {
     posts: Arc<Vec<Post>>,
+    #[allow(dead_code)]
     projects: Arc<Vec<Project>>,
     current_env: String,
 }

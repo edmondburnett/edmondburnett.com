@@ -14,6 +14,7 @@ pub struct Project {
 }
 
 impl Project {
+    #[allow(dead_code)]
     pub fn new(id: &str) -> Result<Self> {
         let markdown = Markdown::<ProjectMetadata>::from_file("projects", id, true)?;
 
