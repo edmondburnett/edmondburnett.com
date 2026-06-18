@@ -51,17 +51,8 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    location /pgp.txt {
-        alias /srv/http/edmondburnett.com/static/pgp.txt;
-    }
-
-    location /favicon.ico {
-        alias /srv/http/edmondburnett.com/static/favicon.ico;
-        access_log off;
-    }
-
-    location /robots.txt {
-        alias /srv/http/edmondburnett.com/static/robots.txt;
+    location ~ ^/(favicon\.ico|apple-touch-icon\.png|android-chrome-.*\.png|site\.webmanifest|pgp\.txt|robots\.txt)$ {
+        root /srv/http/edmondburnett.com/static;
         access_log off;
     }
 
