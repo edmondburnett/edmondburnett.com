@@ -34,6 +34,9 @@ server {
     location /static/ {
         alias /srv/http/edmondburnett.com/static/;
         access_log off;
+
+        expires 5m;
+        add_header Cache-Control "public";
     }
 
     location / {
