@@ -14,6 +14,7 @@ pub struct Post {
     pub date: DateTime<Utc>,
     pub updated: DateTime<Utc>,
     pub draft: bool,
+    pub obsolete: Option<bool>,
 }
 
 impl Post {
@@ -29,6 +30,7 @@ impl Post {
             date: markdown.metadata().date,
             updated: markdown.metadata().updated,
             draft: markdown.metadata().draft,
+            obsolete: markdown.metadata().obsolete,
         })
     }
 
@@ -60,6 +62,7 @@ impl Post {
                         date: markdown.metadata().date,
                         updated: markdown.metadata().updated,
                         draft: markdown.metadata().draft,
+                        obsolete: markdown.metadata().obsolete,
                     });
                 }
             }

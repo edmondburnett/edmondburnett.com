@@ -18,6 +18,7 @@ pub struct PostMetadata {
     pub updated: DateTime<Utc>,
     #[serde(default)]
     pub draft: bool,
+    pub obsolete: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

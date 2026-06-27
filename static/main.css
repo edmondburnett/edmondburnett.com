@@ -343,6 +343,12 @@ footer ul li {
     margin-left: 10px;
 }
 
+.post-obsolete {
+    color: var(--gold);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .post-content {
     margin-top: 40px;
 }

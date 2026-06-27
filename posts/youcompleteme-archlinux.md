@@ -5,6 +5,7 @@ description: Getting the YouCompleteMe code-completion engine working on Arch.
 date: 2014-10-20T05:58:02Z
 updated: 2014-10-20T05:58:02Z
 draft: false
+obsolete: true
 tags:
     - vim
 ---
@@ -47,4 +48,3 @@ cd ~/.vim/bundle/YouCompleteMe
 YCM should now be ready to use. For C/C++/Obj-C projects, don't forget to set your compiler flags in a
 .ycm_extra_conf.py file in the project's home directory (refer the
 [official docs](https://github.com/ycm-core/YouCompleteMe) for more details on usage).
-

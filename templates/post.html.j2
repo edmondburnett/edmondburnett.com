@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>{{post.title}}</h1>
-<span class="post-date">{{ post.formatted_date() }}</span>{% if post.has_update() %}<span class="post-updated">(updated {{ post.formatted_updated() }})</span>{% endif %}{% if post.draft %}<span class="post-draft">draft</span>{% endif %}
+<span class="post-date">{{ post.formatted_date() }}</span>{% if post.has_update() %}<span class="post-updated">(updated {{ post.formatted_updated() }})</span>{% endif %}{% if let Some(true) = post.obsolete %}<span class="post-obsolete">obsolete</span>{% endif %}{% if post.draft %}<span class="post-draft">draft</span>{% endif %}
 
 <div class="post-content">
 {{post.html|safe}}
