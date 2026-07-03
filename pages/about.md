@@ -1,7 +1,7 @@
 ---
 id: about
 title: About
-updated: 2026-05-21T18:27:21Z
+updated: 2026-07-03T11:03:52Z
 ---
 
 Hello, I'm a Software Engineer based in Seattle, WA. I write about technical topics related to my work and experiments
@@ -14,10 +14,9 @@ Lua, Bash, various Lisps and esolangs, and others. Daily tools consist of Arch L
 Personal interests include music production, DIY electronics, photography, travel, weightlifting, hiking, and bicycling.
 I hold a Level 3 Extra Class amateur radio license from the FCC.
 
-## Work Availability
+## Work Inquiries
 
-Currently open for work in backend or fullstack Software Engineering roles. I'm also highly skilled in infrastructure,
-ops, product, and LLM integrations. Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
+Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
 
 ## About this site
 
