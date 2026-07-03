@@ -14,7 +14,7 @@ Lua, Bash, various Lisps and esolangs, and others. Daily tools consist of Arch L
 Personal interests include music production, DIY electronics, photography, travel, weightlifting, hiking, and bicycling.
 I hold a Level 3 Extra Class amateur radio license from the FCC.
 
-## Work Inquiries
+## Business Inquiries
 
 Connect with me on [Linkedin](https://www.linkedin.com/in/edmondburnett/).
 
