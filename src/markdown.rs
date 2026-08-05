@@ -95,11 +95,14 @@ impl<T: DeserializeOwned> Markdown<T> {
     }
 
     fn convert_to_html(parsed: &ParsedEntity) -> Result<String> {
+        let mut options = Options::default();
+        options.render.figure_with_caption = true;
+
         let arena = Arena::new();
-        let root = parse_document(&arena, &parsed.content, &Options::default());
+        let root = parse_document(&arena, &parsed.content, &options);
 
         let mut html = String::new();
-        format_html(root, &Options::default(), &mut html).wrap_err("Failed to format HTML")?;
+        format_html(root, &options, &mut html).wrap_err("Failed to format HTML")?;
 
         let html = Self::add_code_labels(&html)?;
 

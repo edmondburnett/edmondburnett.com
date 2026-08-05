@@ -353,6 +353,23 @@ footer ul li {
     margin-top: 40px;
 }
 
+.post-content figure {
+    margin: 30px 0;
+}
+
+.post-content figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.post-content figcaption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--bullet);
+    text-align: left;
+}
+
 .posts-list {
     margin-top: 40px;
     display: grid;
