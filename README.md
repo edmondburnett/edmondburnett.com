@@ -23,3 +23,5 @@ Use `./deploy.sh <env>`:
 
 - `./deploy.sh prod`
 - `./deploy.sh local`
+
+Default port is 7000.
