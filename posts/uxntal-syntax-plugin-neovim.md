@@ -28,8 +28,9 @@ additional support for matchpairs (i.e. so that `%` jumps between pairs), `:chec
 I occasionally enjoy experimenting with esolangs, and the [uxn](https://wiki.xxiivv.com/site/uxn.html) virtual machine
 offers a fun ecosystem along with an interesting thought experiment: [permacomputing](https://permacomputing.net/); or
 building software that stays useful for decades, is maintainable by a single person, small enough to run on old or
-scavenged hardware, using limited power and compute resources, with no dependency on any particular platform or company
-to stay alive.
+scavenged hardware, using limited power and compute resources (such as on a
+[solar-powered sailboat](https://100r.co/site/pino.html), as sailed by the creators of uxn), with no dependency on any
+particular platform or company to stay alive.
 
 A plugin's home disappearing because it lived on someone else's infrastructure could be seen as a fitting little case
 study in why that appeal is more than aesthetic. For now, I am hosting my Lua version on
