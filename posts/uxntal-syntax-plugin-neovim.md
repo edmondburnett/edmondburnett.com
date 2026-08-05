@@ -28,7 +28,7 @@ additional support for matchpairs (i.e. so that `%` jumps between pairs), `:chec
 I occasionally enjoy experimenting with esolangs, and the [uxn](https://wiki.xxiivv.com/site/uxn.html) virtual machine
 offers a fun ecosystem along with an interesting thought experiment: [permacomputing](https://permacomputing.net/); or
 building software that stays useful for decades, is maintainable by a single person, small enough to run on old or
-scavenged hardware, or on vessels with limited power and compute resources (such as
+scavenged hardware, or in homes or on vessels with limited power and compute resources (such as
 [Pino](https://100r.co/site/pino.html), sailed by the creators of uxn), with no dependency on any particular platform or
 company to stay alive.
 
