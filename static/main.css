@@ -365,7 +365,7 @@ footer ul li {
 
 .post-content figcaption {
     margin-top: 8px;
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     color: var(--bullet);
     text-align: left;
 }
