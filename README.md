@@ -16,3 +16,10 @@ Validate posts:
 Run unit tests:
 
 - `cargo test`
+
+Deploy:
+
+Use `./deploy.sh <env>`:
+
+- `./deploy.sh prod`
+- `./deploy.sh local`
