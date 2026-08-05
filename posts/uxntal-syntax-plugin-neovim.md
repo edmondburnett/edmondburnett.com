@@ -4,7 +4,7 @@ title: Uxntal Syntax Highlighting Plugin for Neovim
 description: Ported a vim syntax highlighter plugin for the Uxntal assembly language to Neovim
 date: 2026-08-05T09:50:22Z
 updated: 2026-08-05T10:35:34Z
-draft: true
+draft: false
 tags:
     - neovim
 ---
