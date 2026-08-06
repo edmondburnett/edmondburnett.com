@@ -1,7 +1,7 @@
 ---
 id: projects
 title: Projects
-updated: 2026-01-21T16:39:30Z
+updated: 2026-08-05T20:23:20Z
 ---
 
 - [Stealth Startup](#) :: Currently building a social, real-time logging and data analytics platform for a niche
@@ -13,10 +13,10 @@ updated: 2026-01-21T16:39:30Z
 Recent or notable open-source projects I've built, maintained, or contributed to.
 
 - [dram](https://github.com/edmondburnett/dram) :: A TUI personal hydration tracker (Rust, WIP).
-- [MIStagesDIY](https://github.com/edmondburnett/MIStagesDIY) :: A C++ toolkit and tutorial for calibrating DIY Mutable
-  Instruments Stages eurorack modules.
 - [uxntal.nvim](https://github.com/edmondburnett/uxntal.nvim) :: Neovim file detection and syntax highlighting for the
   Uxntal assembly language.
+- [MIStagesDIY](https://github.com/edmondburnett/MIStagesDIY) :: A C++ toolkit and tutorial for calibrating DIY Mutable
+  Instruments Stages eurorack modules.
 - [twitter-text-python](https://github.com/edmondburnett/twitter-text-python) :: Maintainer (2014-2024). A popular text
   processing library for extracting objects from Twitter API data.
 
