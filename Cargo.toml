@@ -21,3 +21,9 @@ tokio = { version = "1.49.0", features = ["rt-multi-thread", "macros"] }
 tower-http = { version = "0.7.0", features = ["trace", "fs"] }
 tracing = "0.1.44"
 tracing-subscriber = { version = "0.3.22", features = ["env-filter"]}
+
+[unstable]
+min-publish-age = true
+
+[registry]
+global-min-publish-age = "3 days"
