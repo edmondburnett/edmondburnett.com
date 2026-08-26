@@ -68,6 +68,7 @@ else
         sudo find /var/cache/nginx-edmondburnett-com -mindepth 1 -delete
         sudo systemctl link $DEST/$SERVICE
         sudo systemctl daemon-reload
+        sudo systemctl enable $SERVICE
         sudo systemctl reload nginx
         sudo systemctl restart $SERVICE
     "
