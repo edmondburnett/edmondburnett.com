@@ -105,11 +105,20 @@ pub async fn rss(State(state): State<AppState>) -> impl IntoResponse {
             break;
         }
 
+        let html = match Post::new(&post.id) {
+            Ok(full_post) => full_post.html,
+            Err(e) => {
+                tracing::error!(post_id = %post.id, error = %e, "Failed to load post for RSS");
+                continue;
+            }
+        };
+
         let item = ItemBuilder::default()
             .title(Some(post.title.clone()))
             .link(Some(format!("https://edmondburnett.com/post/{}", post.id)))
             .description(Some(post.description.clone()))
             .pub_date(Some(post.date.to_rfc2822()))
+            .content(Some(html))
             .build();
         items.push(item);
     }
