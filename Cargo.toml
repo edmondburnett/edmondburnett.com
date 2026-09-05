@@ -7,7 +7,7 @@ edition = "2024"
 askama = "0.16.0"
 askama_web = { version = "0.16.0", features = ["axum-0.8"] }
 axum = "0.8.8"
-chrono = { version = "0.4.42", features = ["serde"]}
+chrono = { version = "0.4.42", features = ["serde"] }
 chrono-tz = "0.10.4"
 clap = "4.5.54"
 color-eyre = "0.6.5"
@@ -16,13 +16,7 @@ gray_matter = "0.3.2"
 regex = "1.12.2"
 rss = "2.0.12"
 serde = "1.0.228"
-tokio = { version = "1.49.0", features = ["rt-multi-thread", "macros"] }
-tower-http = { version = "0.7.0", features = ["trace", "fs"] }
+tokio = { version = "1.49.0", features = ["macros", "rt-multi-thread"] }
+tower-http = { version = "0.7.0", features = ["fs", "trace"] }
 tracing = "0.1.44"
-tracing-subscriber = { version = "0.3.22", features = ["env-filter"]}
-
-[unstable]
-min-publish-age = true
-
-[registry]
-global-min-publish-age = "3 days"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
