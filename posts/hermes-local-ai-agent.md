@@ -56,7 +56,7 @@ These sorts of benchmarks begin to inform the potential use-cases. It is, of cou
 agents. My vision for it lies in less-complex duties: task & issue management for my GitHub projects, a conversational
 Slack/Discord/IRC assistant, offloading simple tasks from paid models, an MCP frontend to my personal
 note-taking/knowledge base system, one of several agents in a [Buzz workspace](https://github.com/block/buzz), or
-perhaps running abliterated models for red-teaming or legitimate security research.
+perhaps running [abliterated](https://github.com/p-e-w/heretic) models for red-teaming or legitimate security research.
 
 On Discord, it got some scripting use straight away. My girlfriend asked it to build a Python web crawler that finds
 climate-related job listings and emails her a weekly digest. It wrote the script and then improved it over several
