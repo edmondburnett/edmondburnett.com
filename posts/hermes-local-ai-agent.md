@@ -68,8 +68,8 @@ that below). It also insisted it couldn't attach code files in Discord, and decl
 turned out to be its own memory: during early testing it had saved a note telling itself to put files in a sandbox
 folder whose path Hermes couldn't attach from, and it kept following that note over my instructions. Its memory is a
 plain markdown file, so the fix was simply to delete the offending lines. Being able to read and edit what the agent
-believes about itself is one of the nicer parts of running it. For sharing larger bits of code, I also gave it access to
-GitHub for Gists, along with a shared private repo.
+believes about itself is one of the nicer parts of running it. For sharing larger disparate bits of code, I also gave it
+access to GitHub for Gists, along with a shared private repo.
 
 ## Installation & Setup
 
