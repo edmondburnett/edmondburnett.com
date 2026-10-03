@@ -24,6 +24,7 @@
     --colortrans: 0.1s;
     --gold: #ffb800;
     --bullet: #555;
+    --scrollthumb: #c4c4c4;
 }
 
 .dark {
@@ -34,6 +35,7 @@
     --fbg: #000000;
     --ftext: #a0a0a0;
     --bgcode: #000000;
+    --scrollthumb: #333;
 }
 
 html {
@@ -108,7 +110,9 @@ pre code {
     display: block;
     padding: 10px;
     background: var(--bgcode);
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow-x: auto;
+    scrollbar-color: var(--scrollthumb) transparent;
     transition:
         background var(--bgtrans),
         color var(--colortrans);
@@ -116,10 +120,15 @@ pre code {
 
 :not(pre) > code {
     padding: 2px 5px;
+    overflow-wrap: anywhere;
     background: var(--bgcode);
     transition:
         background var(--bgtrans),
         color var(--colortrans);
+}
+
+.code-wrapper {
+    position: relative;
 }
 
 .code-copy-btn {
@@ -195,6 +204,7 @@ main {
         background var(--bgtrans),
         color var(--colortrans);
     margin: 0 auto;
+    overflow-wrap: break-word;
 }
 
 main a {
@@ -448,7 +458,19 @@ footer ul li {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     body {
-        font-size: 16px;
+        font-size: 17px;
+    }
+
+    main h1 {
+        font-size: 1.6em;
+    }
+
+    main h2 {
+        font-size: 1.35em;
+    }
+
+    main h3 {
+        font-size: 1.15em;
     }
 
     header {

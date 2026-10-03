@@ -42,6 +42,9 @@ document.querySelectorAll('pre').forEach((pre) => {
         }
     })
 
-    code.style.position = 'relative'
-    code.appendChild(button)
+    // Wrap code so the button stays put while the code scrolls horizontally
+    const wrapper = document.createElement('div')
+    wrapper.className = 'code-wrapper'
+    code.before(wrapper)
+    wrapper.append(code, button)
 })
