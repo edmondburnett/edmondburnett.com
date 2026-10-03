@@ -195,7 +195,6 @@ main {
         background var(--bgtrans),
         color var(--colortrans);
     margin: 0 auto;
-    padding: 1.5rem, 1rem;
 }
 
 main a {

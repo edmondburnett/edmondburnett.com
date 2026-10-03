@@ -105,8 +105,44 @@ impl<T: DeserializeOwned> Markdown<T> {
         format_html(root, &options, &mut html).wrap_err("Failed to format HTML")?;
 
         let html = Self::add_code_labels(&html)?;
+        let html = Self::add_image_srcsets(&html)?;
 
         Ok(html)
+    }
+
+    /// Adds a `srcset` to local images that have high-density variants on disk,
+    /// e.g. `foo.png` gets `foo@2x.png 2x` if `static/.../foo@2x.png` exists.
+    fn add_image_srcsets(html: &str) -> Result<String> {
+        let re = regex::Regex::new(r#"<img src="(/static/[^"]+)""#).wrap_err("Failed to compile regex")?;
+
+        Ok(re
+            .replace_all(html, |caps: &regex::Captures| {
+                let src = &caps[1];
+                let candidates: Vec<String> = ["2x", "3x"]
+                    .iter()
+                    .filter_map(|density| {
+                        let variant = Self::density_variant(src, density)?;
+                        let path = PathBuf::from(variant.trim_start_matches('/'));
+                        path.is_file().then(|| format!("{} {}", variant, density))
+                    })
+                    .collect();
+
+                if candidates.is_empty() {
+                    return caps[0].to_string();
+                }
+
+                format!(r#"<img src="{}" srcset="{} 1x, {}""#, src, src, candidates.join(", "))
+            })
+            .to_string())
+    }
+
+    /// `/static/a/foo.png` + `2x` -> `/static/a/foo@2x.png`
+    fn density_variant(src: &str, density: &str) -> Option<String> {
+        let (stem, ext) = src.rsplit_once('.')?;
+        if ext.contains('/') {
+            return None;
+        }
+        Some(format!("{}@{}.{}", stem, density, ext))
     }
 
     fn add_code_labels(html: &str) -> Result<String> {

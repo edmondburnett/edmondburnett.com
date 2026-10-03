@@ -85,7 +85,7 @@ sudo hf download unsloth/Qwen3.6-35B-A3B-GGUF --include 'mmproj-F16.gguf' --loca
 sudo chmod -R a+rX /srv/models
 ```
 
-Installing Hermes is pretty straightforward. `hermes model` opens a wizard where I setup a Custom Endpoint to
+Installing Hermes is pretty straightforward. `hermes model` opens a wizard where I set up a Custom Endpoint to
 `http://127.0.0.1:8080/v1`, no key, `Chat Completions`, context `65536`, and reasoning set to `low` by default. I
 skipped the [Nous Portal](https://portal.nousresearch.com/) model selection for my immediate purposes (those are
 optional free and paid cloud models, feel free to explore these if you desire).
@@ -96,7 +96,6 @@ hermes model
 hermes config set terminal.backend docker
 hermes config set terminal.docker_image local/hermes-sandbox:pdf  # we create this later
 hermes config set model.supports_vision true
-hermes config set GH_TOKEN <github_token>  # stored in ~/.hermes/.env
 ```
 
 ### Choosing the model
@@ -153,9 +152,9 @@ llama-bench -m /srv/models/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf \
 ```
 
 40, 36, 32 and 30 ran; 28 ran out of VRAM. Writing speed rose from 29.8 to 35.6 tokens per second as more experts moved
-onto the GPU (see the chart earlier in this post). I settled on using `-ncmoe 32` in the service systemd unit rather
-than the faster 30, because the benchmark doesn't account for a full 64K context and the vision projector, and a server
-that falls over under load is worse than one that's 3% slower.
+onto the GPU (see the chart earlier in this post). I settled on using `-ncmoe 32` in the systemd unit rather than the
+faster 30, because the benchmark doesn't account for a full 64K context and the vision projector, and a server that
+falls over under load is worse than one that's 3% slower.
 
 ### The memory-pressure fix
 
@@ -243,6 +242,9 @@ terminal:
     container_persistent: true
 ```
 
+With `container_persistent: true`, note that changes to docker volumes only take effect after you `docker rm -f` on the
+old container.
+
 ### GitHub
 
 I created a fine-grained access token on GitHub, limiting the agent to Gists and a few select repositories. Hermes
@@ -259,14 +261,14 @@ the Installation page, set the Install Link to `None`. On the Bot page, enable `
 `Server Members Intent`, and turn `Public Bot` off. Save and hit `Reset Token` to get the application token. You'll also
 need the application ID from the General Information page.
 
-You then invite the bot to your server with
-`https://discord.com/oauth2/authorize?client_id=<APP_ID>&scope=bot+applications.commands&permissions=309238025280`,
-replacing `<APP_ID>` with the one you copied.
-
 Discord user and channel access is restricted in Hermes's `.env` with `DISCORD_ALLOWED_USERS` and
 `DISCORD_ALLOWED_CHANNELS`, and `DISCORD_FREE_RESPONSE_CHANNELS` lets it reply in some channels without being
 @mentioned. In the Discord client, you can right-click on user and channel names to get the IDs, listing them
-(comma-separated) in the appropriate environment vars.
+(comma-separated) in the appropriate environment vars. The application token gets assigned to `DISCORD_BOT_TOKEN`.
+
+You then invite the bot to your server with
+`https://discord.com/oauth2/authorize?client_id=<APP_ID>&scope=bot+applications.commands&permissions=309238025280`,
+replacing `<APP_ID>` with the one you copied.
 
 ```shell
 hermes gateway install
