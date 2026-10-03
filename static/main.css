@@ -234,6 +234,9 @@ main ul > li {
     list-style-type: disc;
     white-space: unset;
     margin-bottom: 0.2rem;
+}
+
+main ul > li::marker {
     color: var(--bullet);
 }
 
