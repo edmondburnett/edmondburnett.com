@@ -78,7 +78,7 @@ are two main pieces: `llama.cpp` runs the model, while `Hermes` talks to it as t
 services. I also downloaded the model's vision projector `mmproj` so that the agent can read images.
 
 ```shell
-sudo pacman -S llama-cpp ggml-cuda
+sudo pacman -S llama-cpp ggml-cuda python-huggingface-hub
 sudo mkdir -p /srv/models
 sudo hf download unsloth/Qwen3.6-35B-A3B-GGUF --include '*UD-Q4_K_M*' --local-dir /srv/models
 sudo hf download unsloth/Qwen3.6-35B-A3B-GGUF --include 'mmproj-F16.gguf' --local-dir /srv/models
@@ -337,6 +337,6 @@ journalctl -u llama-server -f
 Along with my machine learning studies, having a real system to poke at makes the theory a little more concrete. Running
 and tuning my own local model and agent inspires all sorts of fun integration possibilities that will no doubt carry
 over to my other work. I also ended up learning more about how to choose a model, mixture-of-experts architectures,
-attention variants, and expert routing and quantisation. I'm looking forward to more conducting more experiments with
+attention variants, and expert routing and quantisation. I'm looking forward to conducting more experiments with
 self-hosted models on different types of hardware, or perhaps renting some compute time on a tensor core GPU, such as
 the Nvidia A100.
