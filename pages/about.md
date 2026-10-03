@@ -5,7 +5,7 @@ updated: 2026-07-03T11:03:52Z
 ---
 
 Hello, I'm a Software Engineer based in Seattle, WA. I write about technical topics related to my work and experiments
-in code, infrastructure, and systems, or making observations on the industry.
+in code, infrastructure, systems, and machine learning.
 
 My recent programming work is primarily in Python, Rust, and TypeScript. I also use or have used Go (Golang), C, C++,
 Lua, Bash, various Lisps and esolangs, and others. Daily tools consist of Arch Linux, macOS, Neovim, sometimes Emacs
