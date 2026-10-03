@@ -337,4 +337,6 @@ journalctl -u llama-server -f
 Along with my machine learning studies, having a real system to poke at makes the theory a little more concrete. Running
 and tuning my own local model and agent inspires all sorts of fun integration possibilities that will no doubt carry
 over to my other work. I also ended up learning more about how to choose a model, mixture-of-experts architectures, chat
-templates, attention variants, and expert routing and quantisation.
+templates, attention variants, and expert routing and quantisation. I'm looking forward to more conducting more
+experiments with self-hosted models on different types of hardware, or perhaps renting some compute time on a tensor
+core GPU, such as the Nvidia A100.
