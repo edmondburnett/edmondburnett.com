@@ -376,6 +376,15 @@ footer ul li {
     height: auto;
 }
 
+.post-content a.image-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+.post-content a.image-link:hover {
+    background-color: transparent;
+}
+
 .post-content figcaption {
     margin-top: 8px;
     color: var(--bullet);

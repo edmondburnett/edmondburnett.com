@@ -169,4 +169,31 @@ Raw content here."#;
 
         cleanup_test_dir(dir);
     }
+
+    #[test]
+    fn test_images_link_to_full_size() {
+        let dir = "test_posts_image_links";
+        let id = "test_image_links";
+        let content = r#"---
+title: Image Test
+tags: []
+---
+
+![Alt text](/static/images/example.png "Caption")
+
+[![Linked](/static/images/linked.png)](https://example.com)"#;
+
+        create_test_file(dir, id, content);
+
+        let markdown = Markdown::<TestMetadata>::from_file(dir, id, true).unwrap();
+        let html = markdown.html();
+
+        assert!(html.contains(
+            r#"<figure><a class="image-link" href="/static/images/example.png"><img src="/static/images/example.png" alt="Alt text" title="Caption" /></a><figcaption>Caption</figcaption></figure>"#
+        ));
+        assert!(html.contains(r#"<a href="https://example.com"><figure><img src="/static/images/linked.png""#));
+        assert_eq!(html.matches("image-link").count(), 1);
+
+        cleanup_test_dir(dir);
+    }
 }
