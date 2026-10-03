@@ -118,7 +118,7 @@ pre code {
         color var(--colortrans);
 }
 
-:not(pre) > code {
+code:not(pre code) {
     padding: 2px 5px;
     overflow-wrap: anywhere;
     background: var(--bgcode);
@@ -129,34 +129,37 @@ pre code {
 
 .code-wrapper {
     position: relative;
+    overflow: hidden;
 }
 
 .code-copy-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: transparent;
+    /* Fade overflowing code out behind the button */
+    background: var(--bgcode);
+    box-shadow: 0 0 2px 2px var(--bgcode);
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.3;
-    transition: opacity 0.4s;
-}
-
-.code-copy-btn:hover {
-    opacity: 1;
-}
-
-.code-copy-btn.copied {
-    opacity: 1;
+    transition:
+        background var(--bgtrans),
+        box-shadow var(--bgtrans);
 }
 
 .code-copy-btn img {
     width: 20px;
     height: 20px;
+    opacity: 0.3;
+    transition: opacity 0.4s;
+}
+
+.code-copy-btn:hover img,
+.code-copy-btn.copied img {
+    opacity: 1;
 }
 
 .dark .code-copy-btn img {
