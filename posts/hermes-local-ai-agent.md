@@ -108,9 +108,9 @@ weights, so those can live in RAM while the parts used on every token stay on th
 
 ### Serving it with llama.cpp
 
-Arch Linux packages `llama-server` with its own systemd unit, so I overrode its command line with a drop-in:
-
-`sudo systemctl edit llama-server`
+Arch Linux packages `llama-server` with its own systemd unit, so I overrode its command line with a
+[drop-in](https://wiki.archlinux.org/title/Systemd#Drop-in_files), by running `sudo systemctl edit llama-server` and
+pasting the following between the commented lines:
 
 ```ini
 [Service]
