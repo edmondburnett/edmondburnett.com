@@ -284,8 +284,8 @@ IRC).
 
 ### Terminal access from other machines
 
-The excellent Hermes agent TUI runs on the server. I use it from my workstation and laptop over SSH. In `~/.ssh/config`
-I added:
+The excellent [Hermes agent TUI](/static/images/hermes-local-ai-agent/hermes-tui.png) runs on the server. I use it from
+my workstation and laptop over SSH. In `~/.ssh/config` I added:
 
 ```sshconfig
 Host hermes
@@ -305,8 +305,9 @@ Host hermes-zellij
 ```
 
 `ssh hermes` opens a fresh session, while `ssh hermes-tmux` and `ssh hermes-zellij` variants attach to a persistent
-session that survives disconnects. tmux needs `-u` to render the TUI's Unicode characters properly. The zellij variant
-uses a custom layout that I created at `~/.config/zellij/layouts/hermes.kdl` on the server:
+session that survives disconnects. tmux needs `-u` to render the TUI's Unicode characters properly. The
+[zellij](https://zellij.dev/) variant uses a custom layout that I created at `~/.config/zellij/layouts/hermes.kdl` on
+the server:
 
 ```kdl
 layout {
