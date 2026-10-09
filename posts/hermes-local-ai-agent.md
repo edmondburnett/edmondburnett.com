@@ -321,11 +321,25 @@ layout {
 }
 ```
 
+### Installing a memory provider
+
+After storing a handful of memories, Hermes might complain about memory size limitations. This is solved by installing
+an
+[external memory provider](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory/#external-memory-providers).
+
+```
+hermes config set memory.provider holographic
+```
+
+I chose [Holographic](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers/#holographic)
+since it's local, has no dependencies, and just uses a regular SQLite database.
+
 ### Useful commands
 
 ```shell
 hermes gateway restart  # after config changes
 hermes config set <key> <value>
+hermes memory setup  # memory provider wizard
 hermes mcp  # manage MCP servers
 hermes lsp status
 
