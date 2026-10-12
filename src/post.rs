@@ -44,28 +44,27 @@ impl Post {
                 continue;
             }
 
-            // if let Some(id) = path.file_stem().and_then(|s| s.to_str()) {
-            if let Some(file_stem) = path.file_stem() {
-                if let Some(id) = file_stem.to_str() {
-                    let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
+            let Some(id) = path.file_stem().and_then(|s| s.to_str()) else {
+                continue;
+            };
 
-                    if markdown.metadata().draft && !include_drafts {
-                        continue;
-                    }
+            let markdown = Markdown::<PostMetadata>::from_file("posts", id, false)?;
 
-                    posts.push(Post {
-                        id: id.to_string(),
-                        title: markdown.metadata().title.clone(),
-                        description: markdown.metadata().description.clone(),
-                        tags: markdown.metadata().tags.clone(),
-                        html: String::new(),
-                        date: markdown.metadata().date,
-                        updated: markdown.metadata().updated,
-                        draft: markdown.metadata().draft,
-                        obsolete: markdown.metadata().obsolete,
-                    });
-                }
+            if markdown.metadata().draft && !include_drafts {
+                continue;
             }
+
+            posts.push(Post {
+                id: id.to_string(),
+                title: markdown.metadata().title.clone(),
+                description: markdown.metadata().description.clone(),
+                tags: markdown.metadata().tags.clone(),
+                html: String::new(),
+                date: markdown.metadata().date,
+                updated: markdown.metadata().updated,
+                draft: markdown.metadata().draft,
+                obsolete: markdown.metadata().obsolete,
+            });
         }
         posts.sort_by(Self::compare_posts_by_date);
         Ok(posts)
@@ -88,7 +87,10 @@ impl Post {
     }
 
     pub fn short_date(&self) -> String {
-        self.date.with_timezone(&Pacific).format("%m-%d-%Y").to_string()
+        self.date
+            .with_timezone(&Pacific)
+            .format("%m-%d-%Y")
+            .to_string()
     }
 
     fn format_date_value(&self, date: DateTime<Utc>) -> String {

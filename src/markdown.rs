@@ -47,9 +47,8 @@ pub struct Markdown<T> {
 #[allow(dead_code)]
 impl<T: DeserializeOwned> Markdown<T> {
     pub fn from_file(dir: &str, id: &str, full: bool) -> Result<Self> {
-        let id = id;
         let file = Self::read_file(dir, id).wrap_err(format!("Failed to read {}.md", id))?;
-        let parsed = Self::parse_file(&file).wrap_err(format!("Failed to markdown"))?;
+        let parsed = Self::parse_file(&file).wrap_err(format!("Failed to parse {}.md", id))?;
         let metadata = Self::extract_metadata(&parsed).wrap_err(format!("Can't extract metadata from {}.md", id))?;
         let mut raw_content = String::new();
         let mut html = String::new();
@@ -76,7 +75,7 @@ impl<T: DeserializeOwned> Markdown<T> {
         Ok(file)
     }
 
-    fn parse_file(file: &String) -> Result<ParsedEntity> {
+    fn parse_file(file: &str) -> Result<ParsedEntity> {
         let matter = Matter::<YAML>::new();
         matter.parse(file).map_err(Into::into)
     }
