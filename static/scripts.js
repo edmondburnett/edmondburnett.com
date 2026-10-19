@@ -1,57 +1,50 @@
 function toggleTheme() {
-    document.documentElement.classList.toggle('dark')
-    localStorage.theme = document.documentElement.classList.contains('dark')
-        ? 'dark'
-        : 'light'
+    document.documentElement.classList.toggle("dark");
+    localStorage.theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
-// Listen for system theme changes
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
     if (!localStorage.theme) {
-        document.documentElement.classList.toggle('dark', e.matches)
+        document.documentElement.classList.toggle("dark", e.matches);
     }
-})
+});
 
-document.querySelectorAll('pre').forEach((pre) => {
-    const code = pre.querySelector('code')
-    if (!code) return
+document.querySelectorAll("pre").forEach((pre) => {
+    const code = pre.querySelector("code");
+    if (!code) return;
 
-    // Create copy button
-    const button = document.createElement('button')
-    button.className = 'code-copy-btn'
-    button.innerHTML = '<img src="/static/copy.svg" alt="Copy code"/>'
-    button.title = 'Copy to clipboard'
+    const button = document.createElement("button");
+    button.className = "code-copy-btn";
+    button.innerHTML = '<img src="/static/copy.svg" alt="Copy code"/>';
+    button.title = "Copy to clipboard";
 
-    // Get code content
-    button.addEventListener('click', async () => {
-        const text = code.textContent
-        const img = button.querySelector('img')
+    button.addEventListener("click", async () => {
+        const text = code.textContent;
+        const img = button.querySelector("img");
 
         try {
-            await navigator.clipboard.writeText(text)
-            img.src = '/static/checkmark.svg'
-            img.alt = 'Copied!'
-            button.classList.add('copied')
+            await navigator.clipboard.writeText(text);
+            img.src = "/static/checkmark.svg";
+            img.alt = "Copied!";
+            button.classList.add("copied");
             setTimeout(() => {
-                img.src = '/static/copy.svg'
-                img.alt = 'Copy code'
-                button.classList.remove('copied')
-            }, 1000)
+                img.src = "/static/copy.svg";
+                img.alt = "Copy code";
+                button.classList.remove("copied");
+            }, 1000);
         } catch (err) {
-            console.error('Failed to copy:', err)
+            console.error("Failed to copy:", err);
         }
-    })
+    });
 
-    // Wrap code so the button stays put while the code scrolls horizontally
-    const wrapper = document.createElement('div')
-    wrapper.className = 'code-wrapper'
-    code.before(wrapper)
-    wrapper.append(code, button)
-})
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-wrapper";
+    code.before(wrapper);
+    wrapper.append(code, button);
+});
 
-// Decode obfuscated email links (reversed, then base64-encoded)
-document.querySelectorAll('[data-email]').forEach((el) => {
-    const addr = atob(el.dataset.email).split('').reverse().join('')
-    el.href = `mailto:${addr}`
-    if ('emailText' in el.dataset) el.textContent = addr
-})
+document.querySelectorAll("[data-email]").forEach((el) => {
+    const addr = atob(el.dataset.email).split("").reverse().join("");
+    el.href = `mailto:${addr}`;
+    if ("emailText" in el.dataset) el.textContent = addr;
+});
