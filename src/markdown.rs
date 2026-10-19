@@ -96,6 +96,7 @@ impl<T: DeserializeOwned> Markdown<T> {
     fn convert_to_html(parsed: &ParsedEntity) -> Result<String> {
         let mut options = Options::default();
         options.render.figure_with_caption = true;
+        options.render.r#unsafe = true;
 
         let arena = Arena::new();
         let root = parse_document(&arena, &parsed.content, &options);

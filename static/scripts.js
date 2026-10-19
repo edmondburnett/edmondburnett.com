@@ -48,3 +48,10 @@ document.querySelectorAll('pre').forEach((pre) => {
     code.before(wrapper)
     wrapper.append(code, button)
 })
+
+// Decode obfuscated email links (reversed, then base64-encoded)
+document.querySelectorAll('[data-email]').forEach((el) => {
+    const addr = atob(el.dataset.email).split('').reverse().join('')
+    el.href = `mailto:${addr}`
+    if ('emailText' in el.dataset) el.textContent = addr
+})

@@ -563,3 +563,16 @@ footer ul li {
         height: 80px;
     }
 }
+
+/* Decoy text in obfuscated email addresses */
+.nospam {
+    display: none;
+}
+
+/* Obfuscated email links render as plain text until JS adds the href */
+main a[data-email]:not([href]),
+main a[data-email]:not([href]):hover {
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+}
